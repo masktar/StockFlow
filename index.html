@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang 1: Tổng quan kho - StockFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex">
+
+  <!-- 1. Thanh điều hướng bên trái (Sidebar) -->
+  <aside id="app-sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen"></aside>
+
+  <!-- 2. Khung nội dung chính -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <!-- Header trên cùng -->
+    <header id="app-header"></header>
+
+    <!-- Thân trang nội dung -->
+    <main class="p-6 space-y-6 overflow-y-auto">
+
+      <!-- 4 Thẻ KPI thống kê nhanh -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- KPI 1 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Tổng mã hàng</span>
+            <span class="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center text-sm">📦</span>
+          </div>
+          <p id="kpi-tong-ma" class="text-2xl font-black text-slate-900 mt-2">0</p>
+          <p class="text-xs text-slate-400 mt-1">Đang hoạt động trong danh mục</p>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Tổng tồn thực tế</span>
+            <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center text-sm">🔢</span>
+          </div>
+          <p id="kpi-tong-ton" class="text-2xl font-black text-slate-900 mt-2">0</p>
+          <p class="text-xs text-slate-400 mt-1">Đơn vị lưu kho khả dụng</p>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Giá trị tiền hàng (Vốn)</span>
+            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">💰</span>
+          </div>
+          <p id="kpi-tong-tien" class="text-2xl font-black text-emerald-600 mt-2">0 đ</p>
+          <p class="text-xs text-slate-400 mt-1">Tính theo giá vốn nhập kho</p>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cảnh báo hết/sắp hết</span>
+            <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center text-sm">⚠️</span>
+          </div>
+          <p id="kpi-canh-bao" class="text-2xl font-black text-rose-600 mt-2">0</p>
+          <p class="text-xs text-rose-500 mt-1 font-medium">Mặt hàng dưới định mức an toàn</p>
+        </div>
+      </div>
+
+      <!-- Khối Cảnh báo hàng tồn kho an toàn -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-rose-600 font-bold">⚠️</span>
+            <h3 class="font-bold text-slate-800 text-sm">Danh sách mặt hàng cần nhập bổ sung khẩn cấp</h3>
+          </div>
+          <a href="hang-hoa.html" class="text-xs text-purple-700 font-semibold hover:underline">
+            Xem toàn bộ kho &rarr;
+          </a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-100">
+              <tr>
+                <th class="py-3 px-4">Mã SKU</th>
+                <th class="py-3 px-4">Tên sản phẩm</th>
+                <th class="py-3 px-4">Kho hàng</th>
+                <th class="py-3 px-4 text-center">Tồn kho / Định mức</th>
+                <th class="py-3 px-4 text-center">Trạng thái</th>
+                <th class="py-3 px-4 text-right">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="bang-canh-bao" class="divide-y divide-slate-100">
+              <!-- Render tự động qua JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Hai cột phụ: Phân bổ kho & Lịch sử phiếu gần nhất -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Cột 1: Tình trạng các chi nhánh kho -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+          <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2">
+            <span>🏢</span> Phân bổ hàng theo kho chi nhánh
+          </h3>
+          <div id="danh-sach-kho" class="space-y-3">
+            <!-- Render qua JS -->
+          </div>
+        </div>
+
+        <!-- Cột 2: Phiếu nhập xuất gần đây -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+              <span>🔄</span> Lịch sử phiếu gần đây
+            </h3>
+            <a href="nhap-xuat.html" class="text-xs text-purple-700 font-semibold hover:underline">
+              Quản lý phiếu &rarr;
+            </a>
+          </div>
+          <div id="danh-sach-phieu-moi" class="divide-y divide-slate-100">
+            <!-- Render qua JS -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="api-service.js"></script>
+  <script src="nav.js"></script>
+  <script>
+    // Khởi tạo trang Tổng quan
+    document.addEventListener('DOMContentLoaded', () => {
+      khoiTaoGiaoDienChung('tong-quan');
+      capNhatDashboard();
+    });
+
+    function capNhatDashboard() {
+      const sanPham = StockStore.getSanPham();
+      const phieu = StockStore.getPhieu();
+
+      // 1. Tính toán KPI
+      const tongMa = sanPham.length;
+      let tongTon = 0;
+      let tongTien = 0;
+      let soCanhBao = 0;
+
+      sanPham.forEach(sp => {
+        tongTon += Number(sp.soLuong);
+        tongTien += Number(sp.soLuong) * Number(sp.giaNhap);
+        if (Number(sp.soLuong) <= Number(sp.dinhMucToiThieu)) {
+          soCanhBao++;
+        }
+      });
+
+      document.getElementById('kpi-tong-ma').innerText = dinhDangSo(tongMa);
+      document.getElementById('kpi-tong-ton').innerText = dinhDangSo(tongTon);
+      document.getElementById('kpi-tong-tien').innerText = dinhDangTien(tongTien);
+      document.getElementById('kpi-canh-bao').innerText = dinhDangSo(soCanhBao);
+
+      // 2. Bảng cảnh báo hàng sắp hết
+      const dsCanhBao = sanPham.filter(sp => Number(sp.soLuong) <= Number(sp.dinhMucToiThieu));
+      const bangCanhBaoEl = document.getElementById('bang-canh-bao');
+      if (dsCanhBao.length === 0) {
+        bangCanhBaoEl.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-400">Tất cả mặt hàng đều an toàn!</td></tr>`;
+      } else {
+        bangCanhBaoEl.innerHTML = dsCanhBao.map(sp => {
+          const hetHang = sp.soLuong === 0;
+          return `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="py-3 px-4 font-mono font-bold text-slate-800">${sp.sku}</td>
+              <td class="py-3 px-4 font-semibold text-slate-900">${sp.ten}</td>
+              <td class="py-3 px-4 text-slate-600">${sp.kho}</td>
+              <td class="py-3 px-4 text-center">
+                <span class="font-bold ${hetHang ? 'text-rose-600' : 'text-amber-600'}">${sp.soLuong}</span>
+                <span class="text-slate-400">/ ${sp.dinhMucToiThieu} ${sp.donVi}</span>
+              </td>
+              <td class="py-3 px-4 text-center">
+                ${hetHang 
+                  ? '<span class="badge badge-danger">Hết hàng (0)</span>' 
+                  : '<span class="badge badge-warning">Sắp hết hàng</span>'}
+              </td>
+              <td class="py-3 px-4 text-right">
+                <a href="nhap-xuat.html?nhapSku=${sp.sku}" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 transition">
+                  + Nhập bù
+                </a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // 3. Danh sách phân bổ kho
+      const khoMap = {};
+      sanPham.forEach(sp => {
+        if (!khoMap[sp.kho]) khoMap[sp.kho] = { soMa: 0, tongTon: 0 };
+        khoMap[sp.kho].soMa++;
+        khoMap[sp.kho].tongTon += sp.soLuong;
+      });
+
+      const dsKhoEl = document.getElementById('danh-sach-kho');
+      dsKhoEl.innerHTML = Object.keys(khoMap).map(tenKho => {
+        const info = khoMap[tenKho];
+        return `
+          <div class="flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-slate-50/50">
+            <div>
+              <p class="text-xs font-bold text-slate-800">${tenKho}</p>
+              <p class="text-[11px] text-slate-500">${info.soMa} mã hàng lưu kho</p>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-black text-purple-700">${dinhDangSo(info.tongTon)}</span>
+              <span class="text-[10px] text-slate-400 block">sản phẩm</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 4. Lịch sử phiếu mới
+      const dsPhieuEl = document.getElementById('danh-sach-phieu-moi');
+      dsPhieuEl.innerHTML = phieu.slice(0, 4).map(p => {
+        const laNhap = p.loai === 'nhap';
+        return `
+          <div class="py-2.5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg ${laNhap ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'} flex items-center justify-center font-bold text-xs">
+                ${laNhap ? '↓' : '↑'}
+              </span>
+              <div>
+                <p class="text-xs font-bold text-slate-800">${p.maPhieu} - ${p.tenHang}</p>
+                <p class="text-[11px] text-slate-500">${p.doiTac} • ${p.thoiGian}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-xs font-bold ${laNhap ? 'text-emerald-700' : 'text-rose-700'}">
+                ${laNhap ? '+' : '-'}${p.soLuong}
+              </p>
+              <span class="text-[10px] text-slate-400">${dinhDangTien(p.tongTien)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>

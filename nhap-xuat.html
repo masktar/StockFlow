@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang 3: Phiếu Nhập / Xuất kho - StockFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex">
+
+  <aside id="app-sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen"></aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header id="app-header"></header>
+
+    <main class="p-6 space-y-6 overflow-y-auto">
+
+      <!-- Thanh công cụ & Nút tạo phiếu -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 w-full sm:w-auto flex-1">
+          <input 
+            type="text" 
+            id="tim-kiem-phieu" 
+            oninput="renderDanhSachPhieu()" 
+            placeholder="Tìm theo mã phiếu (NK/XK), tên đối tác, mặt hàng..." 
+            class="w-full max-w-md px-4 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-600"
+          >
+          <select id="loc-loai-phieu" onchange="renderDanhSachPhieu()" class="px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white">
+            <option value="tat-ca">Tất cả loại phiếu</option>
+            <option value="nhap">Chỉ phiếu Nhập kho (Inbound)</option>
+            <option value="xuat">Chỉ phiếu Xuất kho (Outbound)</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button onclick="moModalNhap()" class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-200 transition flex items-center justify-center gap-1.5">
+            <span>↓</span>
+            <span>+ Lập phiếu Nhập kho</span>
+          </button>
+          <button onclick="moModalXuat()" class="flex-1 sm:flex-none px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-md shadow-rose-200 transition flex items-center justify-center gap-1.5">
+            <span>↑</span>
+            <span>+ Lập phiếu Xuất kho</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bảng lịch sử phiếu -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3.5 px-4 font-bold">Mã phiếu</th>
+                <th class="py-3.5 px-4 font-bold text-center">Loại phiếu</th>
+                <th class="py-3.5 px-4 font-bold">Mặt hàng thao tác</th>
+                <th class="py-3.5 px-4 font-bold text-center">Số lượng</th>
+                <th class="py-3.5 px-4 font-bold text-right">Tổng giá trị</th>
+                <th class="py-3.5 px-4 font-bold">Đối tác / Nhà xe / Đại lý</th>
+                <th class="py-3.5 px-4 font-bold">Thời gian lập</th>
+                <th class="py-3.5 px-4 font-bold">Người lập</th>
+              </tr>
+            </thead>
+            <tbody id="bang-phieu" class="divide-y divide-slate-100">
+              <!-- Render tự động -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal 1: Nhập kho -->
+  <div id="modal-nhap" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">↓</span>
+          <h3 class="font-bold text-slate-900 text-base">Lập phiếu Nhập kho (Inbound)</h3>
+        </div>
+        <button onclick="dongModalNhap()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <form onsubmit="xuLyNhapKho(event)" class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Mặt hàng nhập kho *</label>
+          <select id="nhap-sp-id" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 bg-white">
+            <!-- Render danh sách sản phẩm -->
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Nhà cung cấp / Đối tác *</label>
+          <input type="text" id="nhap-doi-tac" required placeholder="Tên nhà cung cấp (VD: Synnex FPT, Apple VN...)" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600">
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Số lượng nhập thêm *</label>
+          <input type="number" id="nhap-so-luong" required min="1" value="10" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="dongModalNhap()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">Hủy</button>
+          <button type="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-200">Hoàn tất Nhập kho</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Xuất kho (Kiểm tra chống xuất âm) -->
+  <div id="modal-xuat" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center font-bold">↑</span>
+          <h3 class="font-bold text-slate-900 text-base">Lập phiếu Xuất kho (Outbound)</h3>
+        </div>
+        <button onclick="dongModalXuat()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <form onsubmit="xuLyXuatKho(event)" class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Mặt hàng xuất kho *</label>
+          <select id="xuat-sp-id" onchange="hienThiTonKhaDung()" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-rose-600 bg-white">
+            <!-- Render qua JS -->
+          </select>
+          <p id="xuat-ton-hien-tai" class="text-[11px] text-slate-500 mt-1 font-medium"></p>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Đại lý nhận hàng / Khách hàng *</label>
+          <input type="text" id="xuat-doi-tac" required placeholder="Đại lý CellphoneS, Thế Giới Di Động..." class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-rose-600">
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Số lượng xuất kho *</label>
+          <input type="number" id="xuat-so-luong" required min="1" value="1" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-rose-600">
+          <p class="text-[10px] text-rose-500 mt-0.5 font-medium">* Hệ thống tự động chặn xuất nếu số lượng vượt quá tồn kho thực tế.</p>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="dongModalXuat()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">Hủy</button>
+          <button type="submit" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-md shadow-rose-200">Hoàn tất Xuất kho</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="api-service.js"></script>
+  <script src="nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      khoiTaoGiaoDienChung('nhap-xuat');
+      renderDanhSachPhieu();
+      napDanhSachSanPhamVaoForm();
+
+      // Kiểm tra xem có SKU truyền từ URL để mở popup nhập kho không
+      const urlParams = new URLSearchParams(window.location.search);
+      const nhapSku = urlParams.get('nhapSku');
+      if (nhapSku) {
+        moModalNhap(nhapSku);
+      }
+    });
+
+    function napDanhSachSanPhamVaoForm() {
+      const danhSach = StockStore.getSanPham();
+      const nhapSelect = document.getElementById('nhap-sp-id');
+      const xuatSelect = document.getElementById('xuat-sp-id');
+
+      const optionsHtml = danhSach.map(sp => 
+        `<option value="${sp.id}">${sp.sku} - ${sp.ten} (Tồn: ${sp.soLuong} ${sp.donVi})</option>`
+      ).join('');
+
+      nhapSelect.innerHTML = optionsHtml;
+      xuatSelect.innerHTML = optionsHtml;
+      hienThiTonKhaDung();
+    }
+
+    function hienThiTonKhaDung() {
+      const spId = document.getElementById('xuat-sp-id')?.value;
+      const danhSach = StockStore.getSanPham();
+      const sp = danhSach.find(item => item.id === spId);
+      const tonEl = document.getElementById('xuat-ton-hien-tai');
+      if (sp && tonEl) {
+        tonEl.innerHTML = `Tồn kho khả dụng: <span class="font-bold text-purple-700">${sp.soLuong} ${sp.donVi}</span> (Kho: ${sp.kho})`;
+      }
+    }
+
+    function renderDanhSachPhieu() {
+      const tuKhoa = (document.getElementById('tim-kiem-phieu')?.value || '').toLowerCase().trim();
+      const locLoai = document.getElementById('loc-loai-phieu')?.value || 'tat-ca';
+      let danhSach = StockStore.getPhieu();
+
+      if (locLoai !== 'tat-ca') {
+        danhSach = danhSach.filter(p => p.loai === locLoai);
+      }
+
+      if (tuKhoa) {
+        danhSach = danhSach.filter(p => 
+          p.maPhieu.toLowerCase().includes(tuKhoa) || 
+          p.doiTac.toLowerCase().includes(tuKhoa) || 
+          p.tenHang.toLowerCase().includes(tuKhoa)
+        );
+      }
+
+      const tbody = document.getElementById('bang-phieu');
+      if (danhSach.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">Chưa có phiếu nhập/xuất kho nào phù hợp!</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = danhSach.map(p => {
+        const laNhap = p.loai === 'nhap';
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3 px-4 font-mono font-bold text-slate-800">${p.maPhieu}</td>
+            <td class="py-3 px-4 text-center">
+              ${laNhap 
+                ? '<span class="badge badge-success">↓ Nhập kho</span>' 
+                : '<span class="badge badge-danger">↑ Xuất kho</span>'}
+            </td>
+            <td class="py-3 px-4 font-semibold text-slate-800">${p.tenHang}</td>
+            <td class="py-3 px-4 text-center font-bold ${laNhap ? 'text-emerald-700' : 'text-rose-700'}">
+              ${laNhap ? '+' : '-'}${p.soLuong}
+            </td>
+            <td class="py-3 px-4 text-right font-medium text-slate-900">${dinhDangTien(p.tongTien)}</td>
+            <td class="py-3 px-4 text-slate-600">${p.doiTac}</td>
+            <td class="py-3 px-4 text-slate-400">${p.thoiGian}</td>
+            <td class="py-3 px-4 text-slate-600 font-medium">${p.nguoiLap}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function moModalNhap(targetSku = null) {
+      napDanhSachSanPhamVaoForm();
+      if (targetSku) {
+        const danhSach = StockStore.getSanPham();
+        const sp = danhSach.find(s => s.sku === targetSku);
+        if (sp) document.getElementById('nhap-sp-id').value = sp.id;
+      }
+      document.getElementById('modal-nhap').classList.remove('hidden');
+      document.getElementById('modal-nhap').classList.add('flex');
+    }
+
+    function dongModalNhap() {
+      document.getElementById('modal-nhap').classList.add('hidden');
+      document.getElementById('modal-nhap').classList.remove('flex');
+    }
+
+    function moModalXuat() {
+      napDanhSachSanPhamVaoForm();
+      document.getElementById('modal-xuat').classList.remove('hidden');
+      document.getElementById('modal-xuat').classList.add('flex');
+    }
+
+    function dongModalXuat() {
+      document.getElementById('modal-xuat').classList.add('hidden');
+      document.getElementById('modal-xuat').classList.remove('flex');
+    }
+
+    function xuLyNhapKho(e) {
+      e.preventDefault();
+      const spId = document.getElementById('nhap-sp-id').value;
+      const doiTac = document.getElementById('nhap-doi-tac').value.trim();
+      const soLuong = parseInt(document.getElementById('nhap-so-luong').value) || 0;
+
+      const sanPhamList = StockStore.getSanPham();
+      const sp = sanPhamList.find(item => item.id === spId);
+      if (!sp) return;
+
+      // Cộng tồn kho
+      sp.soLuong += soLuong;
+      StockStore.setSanPham(sanPhamList);
+
+      // Tạo phiếu
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} ${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+      const user = StockStore.getCurrentUser();
+      const maPhieu = 'NK-' + now.getFullYear() + '-' + Math.floor(100 + Math.random() * 900);
+
+      const phieuMoi = {
+        id: 'm_' + Date.now(),
+        maPhieu,
+        loai: 'nhap',
+        doiTac,
+        tenHang: sp.ten,
+        soLuong,
+        tongTien: soLuong * sp.giaNhap,
+        thoiGian: timeStr,
+        nguoiLap: user ? user.ten : 'Thủ kho'
+      };
+
+      const phieuList = StockStore.getPhieu();
+      phieuList.unshift(phieuMoi);
+      StockStore.setPhieu(phieuList);
+
+      StockStore.ghiNhatKy('NHẬP KHO', maPhieu, `Nhập thêm ${soLuong} ${sp.donVi} "${sp.ten}" từ đối tác ${doiTac}`);
+
+      dongModalNhap();
+      hienThongBao(`Đã lập phiếu nhập ${maPhieu} thành công!`);
+      renderDanhSachPhieu();
+    }
+
+    function xuLyXuatKho(e) {
+      e.preventDefault();
+      const spId = document.getElementById('xuat-sp-id').value;
+      const doiTac = document.getElementById('xuat-doi-tac').value.trim();
+      const soLuong = parseInt(document.getElementById('xuat-so-luong').value) || 0;
+
+      const sanPhamList = StockStore.getSanPham();
+      const sp = sanPhamList.find(item => item.id === spId);
+      if (!sp) return;
+
+      // KIỂM TRA CHỐNG XUẤT ÂM
+      if (soLuong > sp.soLuong) {
+        alert(`❌ LỖI XUẤT KHO:\nTrong kho chỉ còn ${sp.soLuong} ${sp.donVi}, không thể xuất ${soLuong} ${sp.donVi}!\nVui lòng nhập số lượng nhỏ hơn hoặc bằng số tồn.`);
+        return;
+      }
+
+      // Trừ tồn kho
+      sp.soLuong -= soLuong;
+      StockStore.setSanPham(sanPhamList);
+
+      // Tạo phiếu xuất
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} ${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+      const user = StockStore.getCurrentUser();
+      const maPhieu = 'XK-' + now.getFullYear() + '-' + Math.floor(100 + Math.random() * 900);
+
+      const phieuMoi = {
+        id: 'm_' + Date.now(),
+        maPhieu,
+        loai: 'xuat',
+        doiTac,
+        tenHang: sp.ten,
+        soLuong,
+        tongTien: soLuong * sp.giaXuat,
+        thoiGian: timeStr,
+        nguoiLap: user ? user.ten : 'Thủ kho'
+      };
+
+      const phieuList = StockStore.getPhieu();
+      phieuList.unshift(phieuMoi);
+      StockStore.setPhieu(phieuList);
+
+      StockStore.ghiNhatKy('XUẤT KHO', maPhieu, `Xuất ${soLuong} ${sp.donVi} "${sp.ten}" cho khách hàng/đại lý ${doiTac}`);
+
+      dongModalXuat();
+      hienThongBao(`Đã lập phiếu xuất ${maPhieu} thành công!`);
+      renderDanhSachPhieu();
+    }
+  </script>
+</body>
+</html>

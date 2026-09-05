@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang 6: Nhật ký kiểm toán - StockFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex">
+
+  <aside id="app-sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen"></aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header id="app-header"></header>
+
+    <main class="p-6 space-y-6 overflow-y-auto">
+
+      <!-- Thanh công cụ -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="relative flex-1 max-w-md w-full">
+          <input 
+            type="text" 
+            id="tim-kiem-log" 
+            oninput="renderDanhSachLog()" 
+            placeholder="Tìm theo hành động, người thao tác, đối tượng..." 
+            class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-600"
+          >
+          <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
+        </div>
+
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button onclick="xuatBaoCaoCSV()" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+            <span>📥</span>
+            <span>Xuất file Excel (CSV)</span>
+          </button>
+          <button onclick="window.print()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+            <span>🖨️</span>
+            <span>In báo cáo</span>
+          </button>
+          <button onclick="xoaTatCaLog()" class="px-3 py-2 border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold rounded-xl transition">
+            🧹 Xóa nhật ký
+          </button>
+        </div>
+      </div>
+
+      <!-- Bảng nhật ký kiểm toán -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3.5 px-4 font-bold">Thời gian</th>
+                <th class="py-3.5 px-4 font-bold">Người thực hiện</th>
+                <th class="py-3.5 px-4 font-bold">Vai trò</th>
+                <th class="py-3.5 px-4 font-bold">Hành động</th>
+                <th class="py-3.5 px-4 font-bold">Mục tiêu / Đối tượng</th>
+                <th class="py-3.5 px-4 font-bold">Nội dung chi tiết</th>
+              </tr>
+            </thead>
+            <tbody id="bang-log" class="divide-y divide-slate-100">
+              <!-- Render qua JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="api-service.js"></script>
+  <script src="nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      khoiTaoGiaoDienChung('nhat-ky');
+      renderDanhSachLog();
+    });
+
+    function renderDanhSachLog() {
+      const tuKhoa = (document.getElementById('tim-kiem-log')?.value || '').toLowerCase().trim();
+      let danhSach = StockStore.getNhatKy();
+
+      if (tuKhoa) {
+        danhSach = danhSach.filter(l => 
+          l.hanhDong.toLowerCase().includes(tuKhoa) || 
+          l.nguoiThaoTac.toLowerCase().includes(tuKhoa) || 
+          l.doiTuong.toLowerCase().includes(tuKhoa) ||
+          l.chiTiet.toLowerCase().includes(tuKhoa)
+        );
+      }
+
+      const tbody = document.getElementById('bang-log');
+      if (danhSach.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-slate-400">Chưa có nhật ký kiểm toán nào!</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = danhSach.map(l => {
+        const laXoa = l.hanhDong.includes('XÓA');
+        const laNhap = l.hanhDong.includes('NHẬP');
+        const laXuat = l.hanhDong.includes('XUẤT');
+
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3 px-4 font-mono text-slate-500 whitespace-nowrap">${l.thoiGian}</td>
+            <td class="py-3 px-4 font-bold text-slate-900">${l.nguoiThaoTac}</td>
+            <td class="py-3 px-4"><span class="badge badge-purple">${l.vaiTro}</span></td>
+            <td class="py-3 px-4 font-bold ${laXoa ? 'text-rose-600' : laNhap ? 'text-emerald-600' : laXuat ? 'text-amber-600' : 'text-purple-700'}">
+              ${l.hanhDong}
+            </td>
+            <td class="py-3 px-4 font-mono font-semibold text-slate-800">${l.doiTuong}</td>
+            <td class="py-3 px-4 text-slate-600 leading-relaxed">${l.chiTiet}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function xoaTatCaLog() {
+      if (!confirm('Bạn có chắc chắn muốn xóa toàn bộ lịch sử kiểm toán?')) return;
+      StockStore.setNhatKy([]);
+      hienThongBao('Đã xóa sạch nhật ký kiểm toán!', 'error');
+      renderDanhSachLog();
+    }
+
+    function xuatBaoCaoCSV() {
+      const logs = StockStore.getNhatKy();
+      if (logs.length === 0) {
+        alert('Không có dữ liệu nhật ký để xuất!');
+        return;
+      }
+
+      let csvContent = "\uFEFF"; // BOM UTF-8 cho Excel đọc tiếng Việt không lỗi font
+      csvContent += "Thời gian,Người thao tác,Vai trò,Hành động,Đối tượng,Chi tiết\n";
+
+      logs.forEach(l => {
+        const row = [
+          `"${l.thoiGian}"`,
+          `"${l.nguoiThaoTac}"`,
+          `"${l.vaiTro}"`,
+          `"${l.hanhDong}"`,
+          `"${l.doiTuong}"`,
+          `"${l.chiTiet.replace(/"/g, '""')}"`
+        ];
+        csvContent += row.join(",") + "\n";
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `BaoCao_KiemToan_Kho_${new Date().getTime()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      hienThongBao('Đã xuất file Excel (CSV) thành công!');
+    }
+  </script>
+</body>
+</html>

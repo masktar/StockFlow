@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang 5: Nhân sự & Phân quyền - StockFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex">
+
+  <aside id="app-sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen"></aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header id="app-header"></header>
+
+    <main class="p-6 space-y-6 overflow-y-auto">
+
+      <!-- Thanh thông tin và nút Thêm -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="p-2 rounded-xl bg-purple-50 text-purple-700 text-lg">🛡️</span>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Mô hình phân quyền kiểm soát vai trò (RBAC)</h3>
+            <p class="text-xs text-slate-500">Cho phép thay đổi vai trò trực tiếp trên từng nhân viên để kiểm thử</p>
+          </div>
+        </div>
+
+        <button onclick="moModalThemNhanSu()" class="w-full sm:w-auto px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-1.5">
+          <span>+</span>
+          <span>Thêm Nhân viên mới</span>
+        </button>
+      </div>
+
+      <!-- Bảng nhân sự -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3.5 px-4 font-bold">Họ và Tên</th>
+                <th class="py-3.5 px-4 font-bold">Email</th>
+                <th class="py-3.5 px-4 font-bold">Điện thoại</th>
+                <th class="py-3.5 px-4 font-bold">Bộ phận phụ trách</th>
+                <th class="py-3.5 px-4 font-bold">Vai trò hệ thống (RBAC)</th>
+                <th class="py-3.5 px-4 font-bold text-center">Trạng thái</th>
+                <th class="py-3.5 px-4 font-bold text-right">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="bang-nhan-su" class="divide-y divide-slate-100">
+              <!-- Render qua JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal Thêm Nhân viên -->
+  <div id="modal-nhan-su" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-bold text-slate-900 text-base">Thêm Nhân viên mới</h3>
+        <button onclick="dongModalThemNhanSu()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <form onsubmit="xuLyThemNhanSu(event)" class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Họ và tên *</label>
+          <input type="text" id="ns-ten" required placeholder="Nguyễn Văn A" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Email *</label>
+            <input type="email" id="ns-email" required placeholder="a.nguyen@khohang.vn" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Số điện thoại</label>
+            <input type="tel" id="ns-sdt" placeholder="0912 345 678" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Bộ phận công tác *</label>
+          <select id="ns-phong-ban" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600 bg-white">
+            <option value="Kho Tổng Hà Nội">Kho Tổng Hà Nội</option>
+            <option value="Kho Bình Dương">Kho Bình Dương</option>
+            <option value="Kho Đà Nẵng">Kho Đà Nẵng</option>
+            <option value="Quản lý Điều phối">Quản lý Điều phối</option>
+            <option value="Kế toán Kho">Kế toán Kho</option>
+            <option value="Ban Giám Đốc">Ban Giám Đốc</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Vai trò hệ thống *</label>
+          <select id="ns-vai-tro" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600 bg-white">
+            <option value="staff">Thủ kho (Staff) - Nhập/Xuất kho hàng ngày</option>
+            <option value="manager">Quản lý kho (Manager) - Duyệt và điều phối</option>
+            <option value="accountant">Kế toán (Accountant) - Đối soát tiền hàng</option>
+            <option value="admin">Quản trị viên (Admin) - Toàn quyền hệ thống</option>
+          </select>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="dongModalThemNhanSu()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">Hủy</button>
+          <button type="submit" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200">Thêm nhân viên</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="api-service.js"></script>
+  <script src="nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      khoiTaoGiaoDienChung('nhan-su');
+      renderDanhSachNhanSu();
+    });
+
+    function renderDanhSachNhanSu() {
+      const danhSach = StockStore.getNhanSu();
+      const currentUser = StockStore.getCurrentUser();
+      const tbody = document.getElementById('bang-nhan-su');
+
+      tbody.innerHTML = danhSach.map(u => {
+        const laTaiKhoanHienTai = currentUser && currentUser.id === u.id;
+        const dangHoatDong = u.trangThai === 'active';
+
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3.5 px-4">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 font-bold flex items-center justify-center text-xs">
+                  ${u.ten.charAt(0)}
+                </div>
+                <div>
+                  <p class="font-bold text-slate-900">${u.ten} ${laTaiKhoanHienTai ? '<span class="text-[10px] text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded font-semibold">(Bạn)</span>' : ''}</p>
+                </div>
+              </div>
+            </td>
+            <td class="py-3.5 px-4 text-slate-600">${u.email}</td>
+            <td class="py-3.5 px-4 text-slate-600">${u.dienThoai}</td>
+            <td class="py-3.5 px-4 font-medium text-slate-700">${u.phongBan}</td>
+            <td class="py-3.5 px-4">
+              <!-- Thay đổi vai trò trực tiếp -->
+              <select onchange="doiVaiTroNhanSu('${u.id}', this.value)" class="px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-semibold bg-white focus:ring-2 focus:ring-purple-600">
+                <option value="admin" ${u.vaiTro === 'admin' ? 'selected' : ''}>👑 Quản trị viên (Admin)</option>
+                <option value="manager" ${u.vaiTro === 'manager' ? 'selected' : ''}>💼 Quản lý kho (Manager)</option>
+                <option value="staff" ${u.vaiTro === 'staff' ? 'selected' : ''}>📦 Thủ kho (Staff)</option>
+                <option value="accountant" ${u.vaiTro === 'accountant' ? 'selected' : ''}>📊 Kế toán (Accountant)</option>
+              </select>
+            </td>
+            <td class="py-3.5 px-4 text-center">
+              <button onclick="chuyenTrangThaiNhanSu('${u.id}')" class="badge ${dangHoatDong ? 'badge-success hover:opacity-80' : 'badge-danger hover:opacity-80'} cursor-pointer" title="Click để đổi trạng thái">
+                ${dangHoatDong ? 'Hoạt động' : 'Đã khóa'}
+              </button>
+            </td>
+            <td class="py-3.5 px-4 text-right space-x-1">
+              ${!laTaiKhoanHienTai ? `
+                <button onclick="xoaNhanSu('${u.id}', '${u.ten}')" class="p-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Xóa tài khoản">
+                  🗑️
+                </button>
+              ` : `
+                <span class="text-[11px] text-slate-400">Không thể xóa</span>
+              `}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function doiVaiTroNhanSu(id, vaiTroMoi) {
+      let danhSach = StockStore.getNhanSu();
+      const u = danhSach.find(item => item.id === id);
+      if (u) {
+        const vaiTroCu = u.vaiTro;
+        u.vaiTro = vaiTroMoi;
+        StockStore.setNhanSu(danhSach);
+
+        // Nếu là user đang đăng nhập thì cập nhật luôn
+        const currentUser = StockStore.getCurrentUser();
+        if (currentUser && currentUser.id === id) {
+          currentUser.vaiTro = vaiTroMoi;
+          StockStore.setCurrentUser(currentUser);
+          khoiTaoGiaoDienChung('nhan-su');
+        }
+
+        StockStore.ghiNhatKy('ĐỔI VAI TRÒ', u.ten, `Đổi vai trò từ ${vaiTroCu} sang ${vaiTroMoi}`);
+        hienThongBao(`Đã cập nhật vai trò của ${u.ten} thành ${vaiTroMoi}!`);
+        renderDanhSachNhanSu();
+      }
+    }
+
+    function chuyenTrangThaiNhanSu(id) {
+      let danhSach = StockStore.getNhanSu();
+      const u = danhSach.find(item => item.id === id);
+      if (u) {
+        u.trangThai = u.trangThai === 'active' ? 'inactive' : 'active';
+        StockStore.setNhanSu(danhSach);
+        StockStore.ghiNhatKy('ĐỔI TRẠNG THÁI', u.ten, `Trạng thái mới: ${u.trangThai}`);
+        hienThongBao(`Đã đổi trạng thái của ${u.ten}!`);
+        renderDanhSachNhanSu();
+      }
+    }
+
+    function moModalThemNhanSu() {
+      document.getElementById('modal-nhan-su').classList.remove('hidden');
+      document.getElementById('modal-nhan-su').classList.add('flex');
+    }
+
+    function dongModalThemNhanSu() {
+      document.getElementById('modal-nhan-su').classList.add('hidden');
+      document.getElementById('modal-nhan-su').classList.remove('flex');
+    }
+
+    function xuLyThemNhanSu(e) {
+      e.preventDefault();
+      const ten = document.getElementById('ns-ten').value.trim();
+      const email = document.getElementById('ns-email').value.trim();
+      const dienThoai = document.getElementById('ns-sdt').value.trim() || 'Chưa có';
+      const phongBan = document.getElementById('ns-phong-ban').value;
+      const vaiTro = document.getElementById('ns-vai-tro').value;
+
+      const danhSach = StockStore.getNhanSu();
+      if (danhSach.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        alert(`Email "${email}" đã tồn tại trên hệ thống!`);
+        return;
+      }
+
+      const nsMoi = {
+        id: 'u_' + Date.now(),
+        ten,
+        email,
+        dienThoai,
+        phongBan,
+        vaiTro,
+        trangThai: 'active'
+      };
+
+      danhSach.push(nsMoi);
+      StockStore.setNhanSu(danhSach);
+      StockStore.ghiNhatKy('THÊM NHÂN SỰ', ten, `Thêm nhân sự mới ${ten} (${vaiTro}) tại ${phongBan}`);
+
+      dongModalThemNhanSu();
+      hienThongBao(`Đã thêm nhân viên ${ten} thành công!`);
+      renderDanhSachNhanSu();
+    }
+
+    function xoaNhanSu(id, ten) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa nhân sự [${ten}] khỏi hệ thống?`)) return;
+
+      let danhSach = StockStore.getNhanSu();
+      if (danhSach.length <= 1) {
+        alert('Hệ thống phải có ít nhất 1 tài khoản nhân sự!');
+        return;
+      }
+
+      danhSach = danhSach.filter(u => u.id !== id);
+      StockStore.setNhanSu(danhSach);
+      StockStore.ghiNhatKy('XÓA NHÂN SỰ', ten, `Đã xóa tài khoản nhân sự: ${ten}`);
+
+      hienThongBao(`Đã xóa nhân viên ${ten}!`, 'error');
+      renderDanhSachNhanSu();
+    }
+  </script>
+</body>
+</html>

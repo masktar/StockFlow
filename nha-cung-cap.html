@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang 4: Nhà cung cấp & Đối tác - StockFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex">
+
+  <aside id="app-sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen"></aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header id="app-header"></header>
+
+    <main class="p-6 space-y-6 overflow-y-auto">
+
+      <!-- Thanh công cụ -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="relative flex-1 max-w-md w-full">
+          <input 
+            type="text" 
+            id="tim-kiem-ncc" 
+            oninput="renderDanhSachNCC()" 
+            placeholder="Tìm theo tên nhà cung cấp, mã đối tác, người liên hệ..." 
+            class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-600"
+          >
+          <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
+        </div>
+
+        <button onclick="moModalThemNCC()" class="w-full sm:w-auto px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-1.5">
+          <span>+</span>
+          <span>Thêm Nhà cung cấp mới</span>
+        </button>
+      </div>
+
+      <!-- Bảng nhà cung cấp -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3.5 px-4 font-bold">Mã NCC</th>
+                <th class="py-3.5 px-4 font-bold">Tên công ty / Đối tác</th>
+                <th class="py-3.5 px-4 font-bold">Người đại diện</th>
+                <th class="py-3.5 px-4 font-bold">Số điện thoại</th>
+                <th class="py-3.5 px-4 font-bold">Email</th>
+                <th class="py-3.5 px-4 font-bold">Địa chỉ</th>
+                <th class="py-3.5 px-4 font-bold text-right">Công nợ hiện tại</th>
+                <th class="py-3.5 px-4 font-bold text-right">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="bang-ncc" class="divide-y divide-slate-100">
+              <!-- Render qua JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal Thêm Nhà cung cấp -->
+  <div id="modal-ncc" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-bold text-slate-900 text-base">Thêm Nhà cung cấp mới</h3>
+        <button onclick="dongModalThemNCC()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <form onsubmit="xuLyThemNCC(event)" class="space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Mã NCC *</label>
+            <input type="text" id="ncc-ma" required placeholder="NCC-XXX-01" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Người đại diện</label>
+            <input type="text" id="ncc-dai-dien" placeholder="Ông/Bà..." class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tên công ty / Doanh nghiệp *</label>
+          <input type="text" id="ncc-ten" required placeholder="Công ty TNHH..." class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Số điện thoại *</label>
+            <input type="tel" id="ncc-sdt" required placeholder="024 1234 5678" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Email liên hệ *</label>
+            <input type="email" id="ncc-email" required placeholder="contact@company.com" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Địa chỉ trụ sở</label>
+          <input type="text" id="ncc-dia-chi" placeholder="Quận/Huyện, Tỉnh/Thành phố" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Công nợ ban đầu (VNĐ)</label>
+          <input type="number" id="ncc-cong-no" min="0" step="1000000" value="0" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="dongModalThemNCC()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">Hủy</button>
+          <button type="submit" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200">Lưu thông tin</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="api-service.js"></script>
+  <script src="nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      khoiTaoGiaoDienChung('nha-cung-cap');
+      renderDanhSachNCC();
+    });
+
+    function renderDanhSachNCC() {
+      const tuKhoa = (document.getElementById('tim-kiem-ncc')?.value || '').toLowerCase().trim();
+      let danhSach = StockStore.getNhaCungCap();
+
+      if (tuKhoa) {
+        danhSach = danhSach.filter(ncc => 
+          ncc.ma.toLowerCase().includes(tuKhoa) || 
+          ncc.ten.toLowerCase().includes(tuKhoa) || 
+          (ncc.nguoiLienHe && ncc.nguoiLienHe.toLowerCase().includes(tuKhoa)) ||
+          ncc.dienThoai.includes(tuKhoa)
+        );
+      }
+
+      const tbody = document.getElementById('bang-ncc');
+      if (danhSach.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">Không tìm thấy nhà cung cấp nào!</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = danhSach.map(ncc => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-3 px-4 font-mono font-bold text-slate-800">${ncc.ma}</td>
+          <td class="py-3 px-4 font-bold text-slate-900">${ncc.ten}</td>
+          <td class="py-3 px-4 text-slate-600">${ncc.nguoiLienHe || 'Chưa cập nhật'}</td>
+          <td class="py-3 px-4 text-purple-700 font-medium">${ncc.dienThoai}</td>
+          <td class="py-3 px-4 text-slate-500">${ncc.email}</td>
+          <td class="py-3 px-4 text-slate-500">${ncc.diaChi || 'N/A'}</td>
+          <td class="py-3 px-4 text-right font-bold ${ncc.congNo > 0 ? 'text-amber-600' : 'text-slate-500'}">
+            ${dinhDangTien(ncc.congNo)}
+          </td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="xoaNCC('${ncc.id}', '${ncc.ten}')" class="p-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Xóa nhà cung cấp">
+              🗑️
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function moModalThemNCC() {
+      document.getElementById('modal-ncc').classList.remove('hidden');
+      document.getElementById('modal-ncc').classList.add('flex');
+    }
+
+    function dongModalThemNCC() {
+      document.getElementById('modal-ncc').classList.add('hidden');
+      document.getElementById('modal-ncc').classList.remove('flex');
+    }
+
+    function xuLyThemNCC(e) {
+      e.preventDefault();
+      const ma = document.getElementById('ncc-ma').value.trim().toUpperCase();
+      const ten = document.getElementById('ncc-ten').value.trim();
+      const nguoiLienHe = document.getElementById('ncc-dai-dien').value.trim();
+      const dienThoai = document.getElementById('ncc-sdt').value.trim();
+      const email = document.getElementById('ncc-email').value.trim();
+      const diaChi = document.getElementById('ncc-dia-chi').value.trim();
+      const congNo = parseFloat(document.getElementById('ncc-cong-no').value) || 0;
+
+      const danhSach = StockStore.getNhaCungCap();
+      if (danhSach.some(item => item.ma === ma)) {
+        alert(`Mã nhà cung cấp "${ma}" đã tồn tại!`);
+        return;
+      }
+
+      const nccMoi = {
+        id: 's_' + Date.now(),
+        ma,
+        ten,
+        nguoiLienHe,
+        dienThoai,
+        email,
+        diaChi,
+        congNo,
+        trangThai: 'active'
+      };
+
+      danhSach.unshift(nccMoi);
+      StockStore.setNhaCungCap(danhSach);
+      StockStore.ghiNhatKy('THÊM NHÀ CUNG CẤP', ma, `Thêm nhà cung cấp mới: ${ten}`);
+
+      dongModalThemNCC();
+      hienThongBao(`Đã thêm nhà cung cấp "${ten}"!`);
+      renderDanhSachNCC();
+    }
+
+    function xoaNCC(id, ten) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa nhà cung cấp [${ten}]?`)) return;
+
+      let danhSach = StockStore.getNhaCungCap();
+      danhSach = danhSach.filter(item => item.id !== id);
+      StockStore.setNhaCungCap(danhSach);
+      StockStore.ghiNhatKy('XÓA NHÀ CUNG CẤP', ten, `Đã xóa nhà cung cấp ${ten}`);
+
+      hienThongBao(`Đã xóa nhà cung cấp!`, 'error');
+      renderDanhSachNCC();
+    }
+  </script>
+</body>
+</html>

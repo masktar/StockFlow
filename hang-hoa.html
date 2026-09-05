@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang 2: Hàng hóa & Tồn kho - StockFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen flex">
+
+  <!-- Sidebar chung -->
+  <aside id="app-sidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 min-h-screen"></aside>
+
+  <!-- Khung nội dung -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <header id="app-header"></header>
+
+    <main class="p-6 space-y-6 overflow-y-auto">
+
+      <!-- Hướng dẫn quy trình chuẩn: Tìm kiếm trước khi thêm mới / Sửa giá -->
+      <div class="bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 border border-purple-200/80 rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs shadow-xs">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+            💡
+          </div>
+          <div>
+            <span class="font-bold text-slate-800 text-sm block mb-0.5">Quy trình quản lý hàng hóa & Cập nhật giá bán:</span>
+            <p class="text-slate-600 leading-relaxed">
+              Trước khi thêm mới, hãy <b>gõ tìm kiếm</b> xem sản phẩm đã có trong kho chưa.
+              Nếu sản phẩm đã có (ví dụ <i>iPhone 16 giảm giá từ 30tr xuống 25tr/20tr</i>), chỉ cần bấm nút <b>✏️ Sửa</b> để điều chỉnh giá bán ngay mà không cần xóa tạo lại.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="px-2.5 py-1 rounded-full bg-white border border-purple-200 text-purple-700 font-bold text-[11px] shadow-xs" id="dem-ket-qua">
+            Đang tải dữ liệu...
+          </span>
+        </div>
+      </div>
+
+      <!-- Thanh công cụ: Tìm kiếm, Bộ lọc & Nút thêm mới -->
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 w-full sm:w-auto flex-1">
+          <!-- Ô tìm kiếm -->
+          <div class="relative flex-1 max-w-md">
+            <input 
+              type="text" 
+              id="tim-kiem" 
+              oninput="renderDanhSachSanPham()" 
+              placeholder="Nhập tên sản phẩm (vd: iPhone, Laptop...) hoặc mã SKU để tra cứu..." 
+              class="w-full pl-9 pr-8 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-600 shadow-2xs"
+            >
+            <span class="absolute left-3 top-3 text-slate-400 text-xs">🔍</span>
+            <button 
+              type="button" 
+              id="nut-xoa-tim-kiem" 
+              onclick="xoaOtimKiem()" 
+              class="hidden absolute right-2.5 top-2.5 text-slate-400 hover:text-slate-600 font-bold text-xs p-0.5 rounded-full hover:bg-slate-100"
+              title="Xóa tìm kiếm"
+            >✕</button>
+          </div>
+
+          <!-- Lọc theo kho -->
+          <select id="loc-kho" onchange="renderDanhSachSanPham()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-600 bg-white shadow-2xs">
+            <option value="tat-ca">Tất cả chi nhánh kho</option>
+            <option value="Kho Tổng Hà Nội">Kho Tổng Hà Nội</option>
+            <option value="Kho Chi nhánh Bình Dương">Kho Chi nhánh Bình Dương</option>
+            <option value="Kho Đà Nẵng">Kho Đà Nẵng</option>
+          </select>
+        </div>
+
+        <!-- Nút thêm sản phẩm mới -->
+        <button onclick="moModalThem()" class="w-full sm:w-auto px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-2 shrink-0">
+          <span class="text-sm font-bold">+</span>
+          <span>Thêm sản phẩm mới</span>
+        </button>
+      </div>
+
+      <!-- Bảng danh sách hàng hóa -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3.5 px-4 font-bold">Mã SKU</th>
+                <th class="py-3.5 px-4 font-bold">Tên sản phẩm</th>
+                <th class="py-3.5 px-4 font-bold">Danh mục</th>
+                <th class="py-3.5 px-4 font-bold">Kho lưu trữ</th>
+                <th class="py-3.5 px-4 font-bold text-center">Tồn kho / Định mức</th>
+                <th class="py-3.5 px-4 font-bold text-right">Giá nhập vốn</th>
+                <th class="py-3.5 px-4 font-bold text-right">Giá bán đề xuất</th>
+                <th class="py-3.5 px-4 font-bold text-center">Vị trí kệ</th>
+                <th class="py-3.5 px-4 font-bold text-center">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="bang-san-pham" class="divide-y divide-slate-100">
+              <!-- Render tự động -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal Thêm sản phẩm mới -->
+  <div id="modal-them" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="font-bold text-slate-900 text-base">Thêm sản phẩm mới vào kho</h3>
+          <p class="text-slate-400 text-[11px]">Đăng ký mã SKU và định mức tồn kho ban đầu</p>
+        </div>
+        <button onclick="dongModalThem()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <!-- Cảnh báo nếu phát hiện sản phẩm tương tự đã có -->
+      <div id="canh-bao-trung-sp" class="hidden p-3 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-800 space-y-1.5">
+        <div class="flex items-center gap-2 font-bold">
+          <span>⚠️</span>
+          <span>Phát hiện sản phẩm tương tự đã có trong kho!</span>
+        </div>
+        <p id="canh-bao-trung-noi-dung" class="text-[11px] text-amber-700"></p>
+        <button type="button" id="nut-chuyen-sang-sua" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-[10px] font-bold shadow-xs">
+          ✏️ Mở form SỬA sản phẩm này để đổi giá
+        </button>
+      </div>
+
+      <form id="form-them-sp" onsubmit="xuLyThemSanPham(event)" class="space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Mã SKU *</label>
+            <input type="text" id="sp-sku" oninput="kiemTraTrungKhiThem()" required placeholder="SKU-XXX-01" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600 font-mono">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Danh mục *</label>
+            <select id="sp-danh-muc" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600 bg-white">
+              <option value="Điện thoại">Điện thoại</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Phụ kiện">Phụ kiện</option>
+              <option value="Âm thanh">Âm thanh</option>
+              <option value="Màn hình">Màn hình</option>
+              <option value="Thiết bị văn phòng">Thiết bị văn phòng</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tên sản phẩm *</label>
+          <input type="text" id="sp-ten" oninput="kiemTraTrungKhiThem()" required placeholder="Nhập tên chi tiết (Ví dụ: iPhone 16 Pro Max 256GB...)" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Kho tiếp nhận *</label>
+            <select id="sp-kho" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600 bg-white">
+              <option value="Kho Tổng Hà Nội">Kho Tổng Hà Nội</option>
+              <option value="Kho Chi nhánh Bình Dương">Kho Chi nhánh Bình Dương</option>
+              <option value="Kho Đà Nẵng">Kho Đà Nẵng</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Vị trí kệ</label>
+            <input type="text" id="sp-vi-tri" placeholder="Kệ A1-01" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600 font-mono">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Số lượng ban đầu *</label>
+            <input type="number" id="sp-so-luong" required min="0" value="10" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Định mức tối thiểu *</label>
+            <input type="number" id="sp-dinh-muc" required min="1" value="10" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Đơn vị tính</label>
+            <input type="text" id="sp-don-vi" required value="Chiếc" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Giá nhập vốn (VNĐ) *</label>
+            <input type="number" id="sp-gia-nhap" required min="0" step="10000" value="1000000" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Giá bán đề xuất (VNĐ) *</label>
+            <input type="number" id="sp-gia-xuat" required min="0" step="10000" value="1300000" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-purple-600">
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="dongModalThem()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
+            Hủy bỏ
+          </button>
+          <button type="submit" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200">
+            Lưu sản phẩm mới
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal SỬA THÔNG TIN & ĐIỀU CHỈNH GIÁ SẢN PHẨM -->
+  <div id="modal-sua" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
+            ✏️
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Cập nhật thông tin & Giá bán</h3>
+            <p class="text-slate-400 text-[11px]">Điều chỉnh giá bán theo biến động thị trường hoặc cập nhật vị trí kệ</p>
+          </div>
+        </div>
+        <button onclick="dongModalSua()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <form id="form-sua-sp" onsubmit="xuLySuaSanPham(event)" class="space-y-3">
+        <input type="hidden" id="sua-id">
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Mã SKU (Cố định)</label>
+            <input type="text" id="sua-sku" readonly class="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-xl text-xs font-mono font-bold text-slate-700 cursor-not-allowed">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Danh mục *</label>
+            <select id="sua-danh-muc" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 bg-white">
+              <option value="Điện thoại">Điện thoại</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Phụ kiện">Phụ kiện</option>
+              <option value="Âm thanh">Âm thanh</option>
+              <option value="Màn hình">Màn hình</option>
+              <option value="Thiết bị văn phòng">Thiết bị văn phòng</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tên sản phẩm *</label>
+          <input type="text" id="sua-ten" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Kho lưu trữ *</label>
+            <select id="sua-kho" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 bg-white">
+              <option value="Kho Tổng Hà Nội">Kho Tổng Hà Nội</option>
+              <option value="Kho Chi nhánh Bình Dương">Kho Chi nhánh Bình Dương</option>
+              <option value="Kho Đà Nẵng">Kho Đà Nẵng</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Vị trí ô kệ</label>
+            <input type="text" id="sua-vi-tri" placeholder="Kệ A1-01" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 font-mono">
+          </div>
+        </div>
+
+        <!-- Khung cập nhật giá bán nổi bật (Theo yêu cầu hạ/tăng giá thị trường) -->
+        <div class="p-3 bg-blue-50/70 border border-blue-200 rounded-2xl space-y-2">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="font-bold text-blue-900 uppercase">💰 Điều chỉnh giá tiền mặt hàng:</span>
+            <span class="text-slate-500 text-[10px]">Cập nhật khi thị trường hạ giá</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600 uppercase mb-0.5">Giá bán đề xuất (VNĐ) *</label>
+              <input type="number" id="sua-gia-xuat" required min="0" step="10000" class="w-full px-3 py-2 border border-blue-300 rounded-xl text-xs font-bold text-blue-900 bg-white focus:ring-2 focus:ring-blue-600">
+              <span id="preview-gia-xuat" class="text-[10px] text-blue-600 font-semibold block mt-0.5"></span>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600 uppercase mb-0.5">Giá nhập vốn (VNĐ) *</label>
+              <input type="number" id="sua-gia-nhap" required min="0" step="10000" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs text-slate-700 bg-white focus:ring-2 focus:ring-blue-600">
+              <span id="preview-gia-nhap" class="text-[10px] text-slate-500 font-semibold block mt-0.5"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tồn kho hiện tại</label>
+            <input type="number" id="sua-so-luong" required min="0" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 font-bold">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Định mức an toàn *</label>
+            <input type="number" id="sua-dinh-muc" required min="1" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Đơn vị tính</label>
+            <input type="text" id="sua-don-vi" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Ghi chú / Lý do điều chỉnh</label>
+          <input type="text" id="sua-ly-do" placeholder="Ví dụ: Giảm giá niêm yết theo thị trường / Kiểm kê thực tế định kỳ..." class="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="dongModalSua()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
+            Hủy bỏ
+          </button>
+          <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-500/20">
+            💾 Lưu cập nhật mặt hàng
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="store.js"></script>
+  <script src="api-service.js"></script>
+  <script src="nav.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      khoiTaoGiaoDienChung('hang-hoa');
+      renderDanhSachSanPham();
+
+      // Lắng nghe thay đổi giá trong form sửa để hiển thị preview VND đẹp mắt
+      document.getElementById('sua-gia-xuat')?.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value) || 0;
+        document.getElementById('preview-gia-xuat').innerText = dinhDangTien(val);
+      });
+      document.getElementById('sua-gia-nhap')?.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value) || 0;
+        document.getElementById('preview-gia-nhap').innerText = dinhDangTien(val);
+      });
+    });
+
+    function xoaOtimKiem() {
+      const input = document.getElementById('tim-kiem');
+      if (input) {
+        input.value = '';
+        renderDanhSachSanPham();
+        input.focus();
+      }
+    }
+
+    function renderDanhSachSanPham() {
+      const tuKhoa = (document.getElementById('tim-kiem')?.value || '').toLowerCase().trim();
+      const locKho = document.getElementById('loc-kho')?.value || 'tat-ca';
+      const nutXoa = document.getElementById('nut-xoa-tim-kiem');
+      if (nutXoa) {
+        if (tuKhoa.length > 0) {
+          nutXoa.classList.remove('hidden');
+        } else {
+          nutXoa.classList.add('hidden');
+        }
+      }
+
+      const tatCa = StockStore.getSanPham();
+      let danhSach = [...tatCa];
+
+      if (locKho !== 'tat-ca') {
+        danhSach = danhSach.filter(sp => sp.kho === locKho);
+      }
+
+      if (tuKhoa) {
+        danhSach = danhSach.filter(sp => 
+          sp.sku.toLowerCase().includes(tuKhoa) || 
+          sp.ten.toLowerCase().includes(tuKhoa) || 
+          (sp.danhMuc && sp.danhMuc.toLowerCase().includes(tuKhoa)) ||
+          (sp.viTri && sp.viTri.toLowerCase().includes(tuKhoa))
+        );
+      }
+
+      // Cập nhật số lượng đếm
+      const badge = document.getElementById('dem-ket-qua');
+      if (badge) {
+        if (tuKhoa) {
+          badge.innerHTML = `Tìm thấy <b>${danhSach.length}</b> / ${tatCa.length} sản phẩm`;
+        } else {
+          badge.innerHTML = `Tổng số <b>${tatCa.length}</b> mã hàng trong kho`;
+        }
+      }
+
+      const tbody = document.getElementById('bang-san-pham');
+
+      // Khi không tìm thấy sản phẩm: Hướng dẫn người dùng thêm mới ngay
+      if (danhSach.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center py-12 px-4">
+              <div class="max-w-md mx-auto space-y-3">
+                <div class="w-14 h-14 rounded-3xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mx-auto shadow-xs">
+                  🔍
+                </div>
+                <h4 class="font-bold text-slate-800 text-sm">
+                  ${tuKhoa ? `Chưa có sản phẩm nào khớp với "${tuKhoa}" trong kho` : 'Không có sản phẩm nào trong kho được chọn'}
+                </h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  ${tuKhoa ? `Sản phẩm này chưa được đăng ký trong danh mục. Bạn có thể bấm nút bên dưới để tạo mã hàng mới ngay lập tức!` : 'Hãy chọn chi nhánh kho khác hoặc bấm thêm sản phẩm mới.'}
+                </p>
+                <div class="pt-2 flex items-center justify-center gap-2">
+                  ${tuKhoa ? `
+                    <button onclick="moModalThem('${tuKhoa.replace(/'/g, "\\'")}')" class="px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-bold shadow-md shadow-purple-200 transition inline-flex items-center gap-1.5">
+                      <span>+</span> Thêm mặt hàng "${tuKhoa}" vào kho ngay
+                    </button>
+                    <button onclick="xoaOtimKiem()" class="px-3 py-2.5 border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-xl text-xs font-semibold">
+                      Xóa bộ lọc
+                    </button>
+                  ` : `
+                    <button onclick="moModalThem()" class="px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-bold shadow-md shadow-purple-200">
+                      + Thêm sản phẩm mới
+                    </button>
+                  `}
+                </div>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      const user = StockStore.getCurrentUser();
+      const coQuyenXoa = user && (user.vaiTro === 'admin' || user.vaiTro === 'manager');
+      const coQuyenXemGiaVon = user && (user.vaiTro === 'admin' || user.vaiTro === 'manager' || user.vaiTro === 'accountant');
+
+      tbody.innerHTML = danhSach.map(sp => {
+        const duoiDinhMuc = sp.soLuong <= sp.dinhMucToiThieu;
+        return `
+          <tr class="hover:bg-slate-50/80 transition group">
+            <td class="py-3 px-4 font-mono font-bold text-slate-800">
+              <span class="bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200/60">${sp.sku}</span>
+            </td>
+            <td class="py-3 px-4 font-semibold text-slate-900">
+              <div class="flex items-center gap-1.5">
+                <span>${sp.ten}</span>
+              </div>
+            </td>
+            <td class="py-3 px-4"><span class="badge badge-purple">${sp.danhMuc}</span></td>
+            <td class="py-3 px-4 text-slate-600">${sp.kho}</td>
+            <td class="py-3 px-4 text-center">
+              <span class="font-bold ${duoiDinhMuc ? (sp.soLuong === 0 ? 'text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full' : 'text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full') : 'text-emerald-600'}">
+                ${sp.soLuong}
+              </span>
+              <span class="text-slate-400">/ ${sp.dinhMucToiThieu} ${sp.donVi}</span>
+            </td>
+            <td class="py-3 px-4 text-right font-medium text-slate-700">
+              ${coQuyenXemGiaVon ? dinhDangTien(sp.giaNhap) : '<span class="text-slate-400 text-[11px] font-mono" title="Chỉ Admin/Kế toán mới xem được giá vốn bí mật">🔒 Bảo mật</span>'}
+            </td>
+            <td class="py-3 px-4 text-right font-bold text-emerald-700">
+              ${dinhDangTien(sp.giaXuat)}
+            </td>
+            <td class="py-3 px-4 text-center text-slate-500 font-mono">${sp.viTri || 'Chưa gán'}</td>
+            <td class="py-3 px-4 text-center">
+              <div class="inline-flex items-center justify-center gap-1">
+                <!-- Nút SỬA THÔNG TIN & ĐIỀU CHỈNH GIÁ -->
+                <button 
+                  onclick="moModalSua('${sp.id}')" 
+                  class="px-2.5 py-1 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-lg transition flex items-center gap-1 border border-blue-200/60"
+                  title="Sửa giá bán, giá nhập, định mức và vị trí"
+                >
+                  <span>✏️</span>
+                  <span>Sửa</span>
+                </button>
+
+                <!-- Nút Lập phiếu Nhập/Xuất nhanh -->
+                <a 
+                  href="nhap-xuat.html?nhapSku=${sp.sku}" 
+                  class="p-1.5 text-xs text-purple-700 hover:bg-purple-50 rounded-lg transition" 
+                  title="Lập phiếu nhập/xuất kho cho mã này"
+                >
+                  🔄
+                </a>
+
+                <!-- Nút Xóa (Bảo vệ phân quyền) -->
+                ${coQuyenXoa ? `
+                  <button 
+                    onclick="xoaSanPham('${sp.id}', '${sp.sku}')" 
+                    class="p-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded-lg transition" 
+                    title="Xóa mặt hàng"
+                  >
+                    🗑️
+                  </button>
+                ` : `
+                  <span title="Chỉ Admin/Quản lý mới có quyền xóa mặt hàng" class="text-slate-300 text-xs p-1.5 cursor-not-allowed">🔒</span>
+                `}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // XỬ LÝ SỬA MẶT HÀNG & ĐIỀU CHỈNH GIÁ (EDIT PRODUCT)
+    // =========================================================================
+    let sanPhamDangSuaGoc = null;
+
+    function moModalSua(id) {
+      const sp = StockStore.timSanPhamTheoId(id);
+      if (!sp) {
+        alert('Không tìm thấy thông tin sản phẩm!');
+        return;
+      }
+      sanPhamDangSuaGoc = { ...sp };
+
+      document.getElementById('sua-id').value = sp.id;
+      document.getElementById('sua-sku').value = sp.sku;
+      document.getElementById('sua-ten').value = sp.ten;
+      document.getElementById('sua-danh-muc').value = sp.danhMuc;
+      document.getElementById('sua-kho').value = sp.kho;
+      document.getElementById('sua-vi-tri').value = sp.viTri || '';
+      document.getElementById('sua-gia-xuat').value = sp.giaXuat;
+      document.getElementById('sua-gia-nhap').value = sp.giaNhap;
+      document.getElementById('sua-so-luong').value = sp.soLuong;
+      document.getElementById('sua-dinh-muc').value = sp.dinhMucToiThieu;
+      document.getElementById('sua-don-vi').value = sp.donVi || 'Chiếc';
+      document.getElementById('sua-ly-do').value = '';
+
+      // Preview tiền tệ
+      document.getElementById('preview-gia-xuat').innerText = dinhDangTien(sp.giaXuat);
+      document.getElementById('preview-gia-nhap').innerText = dinhDangTien(sp.giaNhap);
+
+      const modal = document.getElementById('modal-sua');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function dongModalSua() {
+      const modal = document.getElementById('modal-sua');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      sanPhamDangSuaGoc = null;
+    }
+
+    function xuLySuaSanPham(e) {
+      e.preventDefault();
+      const id = document.getElementById('sua-id').value;
+      const ten = document.getElementById('sua-ten').value.trim();
+      const danhMuc = document.getElementById('sua-danh-muc').value;
+      const kho = document.getElementById('sua-kho').value;
+      const viTri = document.getElementById('sua-vi-tri').value.trim() || 'Chưa gán';
+      const giaXuatMoi = parseFloat(document.getElementById('sua-gia-xuat').value) || 0;
+      const giaNhapMoi = parseFloat(document.getElementById('sua-gia-nhap').value) || 0;
+      const soLuongMoi = parseInt(document.getElementById('sua-so-luong').value) || 0;
+      const dinhMucMoi = parseInt(document.getElementById('sua-dinh-muc').value) || 1;
+      const donVi = document.getElementById('sua-don-vi').value.trim() || 'Chiếc';
+      const lyDo = document.getElementById('sua-ly-do').value.trim();
+
+      const capNhat = {
+        ten,
+        danhMuc,
+        kho,
+        viTri,
+        giaXuat: giaXuatMoi,
+        giaNhap: giaNhapMoi,
+        soLuong: soLuongMoi,
+        dinhMucToiThieu: dinhMucMoi,
+        donVi
+      };
+
+      const spCu = sanPhamDangSuaGoc;
+      StockStore.capNhatSanPham(id, capNhat);
+
+      // Ghi nhật ký chi tiết hành động sửa
+      let chiTietSua = `Cập nhật thông tin "${ten}" (${spCu ? spCu.sku : ''})`;
+      if (spCu && spCu.giaXuat !== giaXuatMoi) {
+        chiTietSua += ` | Đổi giá bán: ${dinhDangTien(spCu.giaXuat)} ➔ ${dinhDangTien(giaXuatMoi)}`;
+      }
+      if (spCu && spCu.giaNhap !== giaNhapMoi) {
+        chiTietSua += ` | Đổi giá nhập: ${dinhDangTien(spCu.giaNhap)} ➔ ${dinhDangTien(giaNhapMoi)}`;
+      }
+      if (spCu && spCu.soLuong !== soLuongMoi) {
+        chiTietSua += ` | Điều chỉnh tồn: ${spCu.soLuong} ➔ ${soLuongMoi} ${donVi}`;
+      }
+      if (lyDo) {
+        chiTietSua += ` (Lý do: ${lyDo})`;
+      }
+
+      StockStore.ghiNhatKy('CẬP NHẬT MẶT HÀNG', spCu ? spCu.sku : 'SẢN PHẨM', chiTietSua);
+
+      dongModalSua();
+      hienThongBao(`Đã cập nhật sản phẩm "${ten}" thành công!`);
+      renderDanhSachSanPham();
+    }
+
+    // =========================================================================
+    // XỬ LÝ THÊM MỚI SẢN PHẨM & GỢI Ý THÔNG MINH
+    // =========================================================================
+    function moModalThem(tenGoiY = '') {
+      document.getElementById('canh-bao-trung-sp').classList.add('hidden');
+      const form = document.getElementById('form-them-sp');
+      form.reset();
+
+      if (tenGoiY) {
+        document.getElementById('sp-ten').value = tenGoiY;
+        // Gợi ý mã SKU theo tên
+        const slug = tenGoiY.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+        document.getElementById('sp-sku').value = 'SKU-' + (slug || 'NEW') + '-01';
+      } else {
+        const danhSach = StockStore.getSanPham();
+        document.getElementById('sp-sku').value = 'SKU-SP-' + String(danhSach.length + 1).padStart(3, '0');
+      }
+
+      document.getElementById('modal-them').classList.remove('hidden');
+      document.getElementById('modal-them').classList.add('flex');
+    }
+
+    function dongModalThem() {
+      document.getElementById('modal-them').classList.add('hidden');
+      document.getElementById('modal-them').classList.remove('flex');
+    }
+
+    function kiemTraTrungKhiThem() {
+      const sku = (document.getElementById('sp-sku')?.value || '').trim().toUpperCase();
+      const ten = (document.getElementById('sp-ten')?.value || '').trim().toLowerCase();
+      const box = document.getElementById('canh-bao-trung-sp');
+      const text = document.getElementById('canh-bao-trung-noi-dung');
+      const nut = document.getElementById('nut-chuyen-sang-sua');
+
+      if (!sku && !ten) {
+        box.classList.add('hidden');
+        return;
+      }
+
+      const danhSach = StockStore.getSanPham();
+      const trung = danhSach.find(sp => 
+        (sku && sp.sku === sku) || 
+        (ten.length >= 3 && sp.ten.toLowerCase().includes(ten))
+      );
+
+      if (trung) {
+        box.classList.remove('hidden');
+        text.innerHTML = `Sản phẩm <b>"${trung.ten}"</b> (Mã: <b>${trung.sku}</b>) đã tồn tại với giá bán <b>${dinhDangTien(trung.giaXuat)}</b>. Thay vì tạo trùng, bạn nên cập nhật trực tiếp!`;
+        nut.onclick = () => {
+          dongModalThem();
+          moModalSua(trung.id);
+        };
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
+    function xuLyThemSanPham(e) {
+      e.preventDefault();
+      const sku = document.getElementById('sp-sku').value.trim().toUpperCase();
+      const ten = document.getElementById('sp-ten').value.trim();
+      const danhMuc = document.getElementById('sp-danh-muc').value;
+      const kho = document.getElementById('sp-kho').value;
+      const viTri = document.getElementById('sp-vi-tri').value.trim();
+      const soLuong = parseInt(document.getElementById('sp-so-luong').value) || 0;
+      const dinhMuc = parseInt(document.getElementById('sp-dinh-muc').value) || 1;
+      const donVi = document.getElementById('sp-don-vi').value.trim() || 'Chiếc';
+      const giaNhap = parseFloat(document.getElementById('sp-gia-nhap').value) || 0;
+      const giaXuat = parseFloat(document.getElementById('sp-gia-xuat').value) || 0;
+
+      const danhSach = StockStore.getSanPham();
+      if (danhSach.some(sp => sp.sku === sku)) {
+        alert(`Lỗi: Mã SKU "${sku}" đã tồn tại trong hệ thống! Vui lòng chọn chức năng "Sửa" hoặc đặt mã SKU khác.`);
+        return;
+      }
+
+      const spMoi = {
+        id: 'p_' + Date.now(),
+        sku,
+        ten,
+        danhMuc,
+        kho,
+        viTri: viTri || 'Chưa gán',
+        soLuong,
+        dinhMucToiThieu: dinhMuc,
+        donVi,
+        giaNhap,
+        giaXuat
+      };
+
+      danhSach.unshift(spMoi);
+      StockStore.setSanPham(danhSach);
+      StockStore.ghiNhatKy('THÊM SẢN PHẨM', sku, `Thêm mới mặt hàng "${ten}" với giá bán ${dinhDangTien(giaXuat)}, số lượng ban đầu ${soLuong} ${donVi}`);
+
+      dongModalThem();
+      document.getElementById('form-them-sp').reset();
+      hienThongBao(`Đã thêm sản phẩm "${sku}" thành công!`);
+      renderDanhSachSanPham();
+    }
+
+    function xoaSanPham(id, sku) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa sản phẩm mã [${sku}] khỏi hệ thống kho?`)) return;
+
+      let danhSach = StockStore.getSanPham();
+      const sp = danhSach.find(item => item.id === id);
+      danhSach = danhSach.filter(item => item.id !== id);
+      StockStore.setSanPham(danhSach);
+
+      StockStore.ghiNhatKy('XÓA SẢN PHẨM', sku, `Đã xóa mặt hàng "${sp ? sp.ten : sku}" khỏi danh mục kho`);
+      hienThongBao(`Đã xóa sản phẩm ${sku}!`, 'error');
+      renderDanhSachSanPham();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/* StockFlow - Giao diện thuần CSS, gọn gàng, tinh tế */
+:root {
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+}
+
+body {
+  font-family: 'Lexend', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Tab Active Indicator */
+.nav-item.active {
+  background-color: #f3e8ff;
+  color: #7e22ce;
+  font-weight: 600;
+}
+.nav-item.active svg {
+  color: #7e22ce;
+}
+
+/* Smooth modal backdrop */
+.modal-backdrop {
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Table Hover Effect */
+tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Badge styling */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.badge-success { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+.badge-warning { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+.badge-danger  { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
+.badge-info    { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.badge-purple  { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
