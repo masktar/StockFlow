@@ -71,11 +71,25 @@
           </select>
         </div>
 
-        <!-- Nút thêm sản phẩm mới -->
-        <button onclick="moModalThem()" class="w-full sm:w-auto px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-2 shrink-0">
-          <span class="text-sm font-bold">+</span>
-          <span>Thêm sản phẩm mới</span>
-        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+          <!-- Nút Xuất Báo Cáo Tháng (Excel) -->
+          <button onclick="StockExcel.xuatBaoCaoHangHoa(document.getElementById('loc-kho')?.value || 'tat-ca')" class="flex-1 sm:flex-none px-3.5 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs" title="Xuất báo cáo kiểm kê tồn kho & giá trị tháng ra file Excel">
+            <span>📊</span>
+            <span>Xuất Báo Cáo Tháng</span>
+          </button>
+
+          <!-- Nút Nhập file Excel / CSV hàng loạt -->
+          <button onclick="moModalImportHangHoa()" class="flex-1 sm:flex-none px-3.5 py-2.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs" title="Nhập danh mục hàng hóa số lượng lớn từ file Excel/CSV">
+            <span>📥</span>
+            <span>Nhập Excel</span>
+          </button>
+
+          <!-- Nút thêm sản phẩm thủ công -->
+          <button onclick="moModalThem()" class="flex-1 sm:flex-none px-4 py-2.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-2">
+            <span class="text-sm font-bold">+</span>
+            <span>Thêm sản phẩm</span>
+          </button>
+        </div>
       </div>
 
       <!-- Bảng danh sách hàng hóa -->
@@ -314,7 +328,86 @@
     </div>
   </div>
 
+  <!-- Modal NHẬP HÀNG LOẠT TỪ FILE EXCEL (CSV) -->
+  <div id="modal-import-hang-hoa" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
+            📥
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Nhập hàng loạt từ file Excel / CSV</h3>
+            <p class="text-slate-400 text-[11px]">Nhập số lượng lớn danh mục hàng hóa, giá nhập vốn, giá bán đề xuất và tồn kho ban đầu</p>
+          </div>
+        </div>
+        <button onclick="dongModalImportHangHoa()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <!-- Hướng dẫn & Tải file mẫu -->
+      <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+        <div class="space-y-1">
+          <span class="font-bold text-slate-800 block">Bước 1: Tải file mẫu chuẩn</span>
+          <p class="text-slate-500 text-[11px] leading-relaxed">
+            Dùng file mẫu Excel để điền mã SKU, tên, số lượng, giá vốn, giá bán chuẩn định dạng UTF-8.
+          </p>
+        </div>
+        <button onclick="StockExcel.taiFileMauHangHoa()" class="px-3 py-2 bg-white hover:bg-slate-100 text-purple-700 border border-purple-200 rounded-xl font-bold text-xs shrink-0 shadow-2xs flex items-center gap-1.5">
+          <span>⬇️</span>
+          <span>Tải file Excel mẫu (.csv)</span>
+        </button>
+      </div>
+
+      <!-- Khu vực chọn file hoặc kéo thả -->
+      <div class="border-2 border-dashed border-slate-300 hover:border-purple-500 rounded-2xl p-6 text-center transition bg-slate-50/50 cursor-pointer" onclick="document.getElementById('input-file-hang-hoa').click()">
+        <input type="file" id="input-file-hang-hoa" accept=".csv, text/csv, text/plain" class="hidden" onchange="xuLyChonFileHangHoa(event)">
+        <div class="space-y-2">
+          <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mx-auto">
+            📄
+          </div>
+          <div class="text-xs font-semibold text-slate-700">
+            Nhấp vào đây để chọn file Excel/CSV từ máy tính hoặc kéo thả file vào đây
+          </div>
+          <div id="ten-file-da-chon" class="text-[11px] text-purple-600 font-bold">Chưa có file nào được chọn</div>
+        </div>
+      </div>
+
+      <!-- Xem trước dữ liệu (Preview) -->
+      <div id="hop-preview-hang-hoa" class="hidden space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-slate-800">Xem trước dữ liệu đọc được:</span>
+          <span id="thong-ke-preview-hang-hoa" class="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200"></span>
+        </div>
+        <div class="max-h-48 overflow-y-auto rounded-xl border border-slate-200 text-xs">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-[10px] uppercase text-slate-500 border-b border-slate-200 sticky top-0">
+              <tr>
+                <th class="p-2">Mã SKU</th>
+                <th class="p-2">Tên sản phẩm</th>
+                <th class="p-2">Kho</th>
+                <th class="p-2 text-center">SL</th>
+                <th class="p-2 text-right">Giá bán</th>
+                <th class="p-2 text-center">Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody id="bang-preview-hang-hoa" class="divide-y divide-slate-100 text-[11px]"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+        <button type="button" onclick="dongModalImportHangHoa()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
+          Hủy bỏ
+        </button>
+        <button type="button" id="nut-xac-nhan-import-hang-hoa" disabled onclick="xacNhanImportHangHoa()" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200">
+          Xác nhận nhập vào hệ thống
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="store.js"></script>
+  <script src="excel-helper.js"></script>
   <script src="api-service.js"></script>
   <script src="nav.js"></script>
   <script>
@@ -692,6 +785,174 @@
 
       StockStore.ghiNhatKy('XÓA SẢN PHẨM', sku, `Đã xóa mặt hàng "${sp ? sp.ten : sku}" khỏi danh mục kho`);
       hienThongBao(`Đã xóa sản phẩm ${sku}!`, 'error');
+      renderDanhSachSanPham();
+    }
+
+    // =========================================================================
+    // XỬ LÝ NHẬP DỮ LIỆU TỪ FILE EXCEL (CSV IMPORT)
+    // =========================================================================
+    let danhSachHangHoaImport = [];
+
+    function moModalImportHangHoa() {
+      danhSachHangHoaImport = [];
+      document.getElementById('input-file-hang-hoa').value = '';
+      document.getElementById('ten-file-da-chon').innerText = 'Chưa có file nào được chọn';
+      document.getElementById('hop-preview-hang-hoa').classList.add('hidden');
+      document.getElementById('nut-xac-nhan-import-hang-hoa').disabled = true;
+
+      const modal = document.getElementById('modal-import-hang-hoa');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function dongModalImportHangHoa() {
+      const modal = document.getElementById('modal-import-hang-hoa');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      danhSachHangHoaImport = [];
+    }
+
+    function xuLyChonFileHangHoa(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      document.getElementById('ten-file-da-chon').innerText = `📄 Đã chọn file: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const text = evt.target.result;
+        const rows = StockExcel.docFileCSV(text);
+
+        if (!rows || rows.length <= 1) {
+          alert('File không có dữ liệu hoặc sai định dạng!');
+          return;
+        }
+
+        // Bỏ qua dòng tiêu đề (Header)
+        const dataRows = rows.slice(1);
+        const danhSachHienTai = StockStore.getSanPham();
+        const danhSachTam = [];
+
+        let soMoi = 0;
+        let soCapNhat = 0;
+
+        dataRows.forEach((r, idx) => {
+          if (!r[0] && !r[1]) return; // Bỏ qua dòng trống
+          const sku = (r[0] || '').trim().toUpperCase();
+          const ten = (r[1] || '').trim();
+
+          if (!sku || !ten) return;
+
+          const danhMuc = (r[2] || 'Điện thoại').trim();
+          const kho = (r[3] || 'Kho Tổng Hà Nội').trim();
+          const soLuong = parseInt(r[4]) || 0;
+          const dinhMucToiThieu = parseInt(r[5]) || 5;
+          const giaNhap = parseFloat(r[6]) || 0;
+          const giaXuat = parseFloat(r[7]) || 0;
+          const viTri = (r[8] || 'Chưa gán').trim();
+          const donVi = (r[9] || 'Chiếc').trim();
+
+          const daCo = danhSachHienTai.some(sp => sp.sku === sku);
+          if (daCo) soCapNhat++; else soMoi++;
+
+          danhSachTam.push({
+            id: 'p_imp_' + Date.now() + '_' + idx,
+            sku,
+            ten,
+            danhMuc,
+            kho,
+            soLuong,
+            dinhMucToiThieu,
+            giaNhap,
+            giaXuat,
+            viTri,
+            donVi,
+            daCo
+          });
+        });
+
+        if (danhSachTam.length === 0) {
+          alert('Không tìm thấy dòng dữ liệu sản phẩm hợp lệ trong file!');
+          return;
+        }
+
+        danhSachHangHoaImport = danhTam = danhSachTam;
+
+        // Hiển thị thống kê và bảng xem trước
+        document.getElementById('hop-preview-hang-hoa').classList.remove('hidden');
+        document.getElementById('thong-ke-preview-hang-hoa').innerText = `Đọc được ${danhSachTam.length} dòng (${soMoi} mới, ${soCapNhat} cập nhật)`;
+
+        const tbody = document.getElementById('bang-preview-hang-hoa');
+        tbody.innerHTML = danhSachTam.slice(0, 10).map(item => `
+          <tr class="hover:bg-slate-50">
+            <td class="p-2 font-mono font-bold text-slate-800">${item.sku}</td>
+            <td class="p-2 font-semibold text-slate-900">${item.ten}</td>
+            <td class="p-2 text-slate-600">${item.kho}</td>
+            <td class="p-2 text-center font-bold">${item.soLuong}</td>
+            <td class="p-2 text-right font-bold text-emerald-700">${dinhDangTien(item.giaXuat)}</td>
+            <td class="p-2 text-center">
+              ${item.daCo 
+                ? '<span class="px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-[10px] font-bold">Cập nhật</span>' 
+                : '<span class="px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">+ Thêm mới</span>'}
+            </td>
+          </tr>
+        `).join('') + (danhSachTam.length > 10 ? `<tr><td colspan="6" class="p-2 text-center text-slate-400 italic text-[10px]">... và ${danhSachTam.length - 10} sản phẩm khác</td></tr>` : '');
+
+        const nutLuu = document.getElementById('nut-xac-nhan-import-hang-hoa');
+        nutLuu.disabled = false;
+        nutLuu.innerText = `Xác nhận nhập ${danhSachTam.length} sản phẩm vào kho`;
+      };
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    function xacNhanImportHangHoa() {
+      if (!danhSachHangHoaImport || danhSachHangHoaImport.length === 0) return;
+
+      let danhSach = StockStore.getSanPham();
+      let demMoi = 0;
+      let demSua = 0;
+
+      danhSachHangHoaImport.forEach(item => {
+        const idx = danhSach.findIndex(sp => sp.sku === item.sku);
+        if (idx !== -1) {
+          // Cập nhật sản phẩm đã có
+          danhSach[idx] = {
+            ...danhSach[idx],
+            ten: item.ten,
+            danhMuc: item.danhMuc,
+            kho: item.kho,
+            soLuong: item.soLuong,
+            dinhMucToiThieu: item.dinhMucToiThieu,
+            giaNhap: item.giaNhap,
+            giaXuat: item.giaXuat,
+            viTri: item.viTri,
+            donVi: item.donVi
+          };
+          demSua++;
+        } else {
+          // Thêm sản phẩm mới
+          danhSach.unshift({
+            id: 'p_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+            sku: item.sku,
+            ten: item.ten,
+            danhMuc: item.danhMuc,
+            kho: item.kho,
+            soLuong: item.soLuong,
+            dinhMucToiThieu: item.dinhMucToiThieu,
+            giaNhap: item.giaNhap,
+            giaXuat: item.giaXuat,
+            viTri: item.viTri,
+            donVi: item.donVi
+          });
+          demMoi++;
+        }
+      });
+
+      StockStore.setSanPham(danhSach);
+      StockStore.ghiNhatKy('NHẬP EXCEL', 'HÀNG HÓA', `Nhập file Excel hàng loạt: Thêm ${demMoi} mặt hàng mới, cập nhật giá/tồn ${demSua} mặt hàng`);
+
+      dongModalImportHangHoa();
+      hienThongBao(`Đã nhập thành công ${danhSachHangHoaImport.length} sản phẩm (${demMoi} mới, ${demSua} cập nhật)!`);
       renderDanhSachSanPham();
     }
   </script>

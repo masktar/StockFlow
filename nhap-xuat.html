@@ -34,14 +34,27 @@
           </select>
         </div>
 
-        <div class="flex items-center gap-2 w-full sm:w-auto">
-          <button onclick="moModalNhap()" class="flex-1 sm:flex-none px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-200 transition flex items-center justify-center gap-1.5">
-            <span>↓</span>
-            <span>+ Lập phiếu Nhập kho</span>
+        <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap">
+          <!-- Nút Xuất Sổ Nhập - Xuất tháng ra Excel -->
+          <button onclick="StockExcel.xuatBaoCaoNhapXuat(document.getElementById('loc-loai-phieu')?.value || 'tat-ca')" class="flex-1 sm:flex-none px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs" title="Xuất sổ chi tiết giao dịch Nhập - Xuất kho tháng ra Excel">
+            <span>📊</span>
+            <span>Xuất Báo Cáo Tháng</span>
           </button>
-          <button onclick="moModalXuat()" class="flex-1 sm:flex-none px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-md shadow-rose-200 transition flex items-center justify-center gap-1.5">
+
+          <!-- Nút Nhập lô phiếu từ file Excel -->
+          <button onclick="moModalImportNhapXuat()" class="flex-1 sm:flex-none px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs" title="Nhập hàng loạt nhiều phiếu nhập / xuất cùng lúc từ file Excel/CSV">
+            <span>📥</span>
+            <span>Nhập Lô Phiếu Excel</span>
+          </button>
+
+          <!-- Nút Lập phiếu thủ công -->
+          <button onclick="moModalNhap()" class="flex-1 sm:flex-none px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-200 transition flex items-center justify-center gap-1.5">
+            <span>↓</span>
+            <span>+ Nhập kho</span>
+          </button>
+          <button onclick="moModalXuat()" class="flex-1 sm:flex-none px-3.5 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-md shadow-rose-200 transition flex items-center justify-center gap-1.5">
             <span>↑</span>
-            <span>+ Lập phiếu Xuất kho</span>
+            <span>+ Xuất kho</span>
           </button>
         </div>
       </div>
@@ -148,7 +161,86 @@
     </div>
   </div>
 
+  <!-- Modal NHẬP LÔ PHIẾU TỪ FILE EXCEL (CSV) -->
+  <div id="modal-import-nhap-xuat" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
+            📥
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Nhập lô phiếu Nhập / Xuất từ file Excel</h3>
+            <p class="text-slate-400 text-[11px]">Tự động tạo hàng loạt phiếu giao dịch và cập nhật tồn kho an toàn chống âm kho</p>
+          </div>
+        </div>
+        <button onclick="dongModalImportNhapXuat()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <!-- Hướng dẫn & Tải file mẫu -->
+      <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+        <div class="space-y-1">
+          <span class="font-bold text-slate-800 block">Bước 1: Tải file mẫu phiếu lô</span>
+          <p class="text-slate-500 text-[11px] leading-relaxed">
+            Điền loại phiếu (NHAP hoặc XUAT), mã SKU, số lượng, đối tác và đơn giá vào file mẫu.
+          </p>
+        </div>
+        <button onclick="StockExcel.taiFileMauNhapXuat()" class="px-3 py-2 bg-white hover:bg-slate-100 text-purple-700 border border-purple-200 rounded-xl font-bold text-xs shrink-0 shadow-2xs flex items-center gap-1.5">
+          <span>⬇️</span>
+          <span>Tải file Excel mẫu (.csv)</span>
+        </button>
+      </div>
+
+      <!-- Khu vực chọn file hoặc kéo thả -->
+      <div class="border-2 border-dashed border-slate-300 hover:border-purple-500 rounded-2xl p-6 text-center transition bg-slate-50/50 cursor-pointer" onclick="document.getElementById('input-file-nhap-xuat').click()">
+        <input type="file" id="input-file-nhap-xuat" accept=".csv, text/csv, text/plain" class="hidden" onchange="xuLyChonFileNhapXuat(event)">
+        <div class="space-y-2">
+          <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mx-auto">
+            📑
+          </div>
+          <div class="text-xs font-semibold text-slate-700">
+            Nhấp vào đây để chọn file Excel/CSV từ máy tính hoặc kéo thả file vào đây
+          </div>
+          <div id="ten-file-da-chon-nx" class="text-[11px] text-purple-600 font-bold">Chưa có file nào được chọn</div>
+        </div>
+      </div>
+
+      <!-- Xem trước dữ liệu (Preview) -->
+      <div id="hop-preview-nhap-xuat" class="hidden space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-slate-800">Kiểm tra hợp lệ trước khi lưu:</span>
+          <span id="thong-ke-preview-nhap-xuat" class="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200"></span>
+        </div>
+        <div class="max-h-48 overflow-y-auto rounded-xl border border-slate-200 text-xs">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-[10px] uppercase text-slate-500 border-b border-slate-200 sticky top-0">
+              <tr>
+                <th class="p-2">Loại</th>
+                <th class="p-2">Mã SKU</th>
+                <th class="p-2">Tên sản phẩm</th>
+                <th class="p-2 text-center">SL</th>
+                <th class="p-2">Đối tác</th>
+                <th class="p-2 text-center">Kiểm tra</th>
+              </tr>
+            </thead>
+            <tbody id="bang-preview-nhap-xuat" class="divide-y divide-slate-100 text-[11px]"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+        <button type="button" onclick="dongModalImportNhapXuat()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
+          Hủy bỏ
+        </button>
+        <button type="button" id="nut-xac-nhan-import-nhap-xuat" disabled onclick="xacNhanImportNhapXuat()" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200">
+          Xác nhận tạo lô phiếu
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="store.js"></script>
+  <script src="excel-helper.js"></script>
   <script src="api-service.js"></script>
   <script src="nav.js"></script>
   <script>
@@ -352,6 +444,202 @@
       dongModalXuat();
       hienThongBao(`Đã lập phiếu xuất ${maPhieu} thành công!`);
       renderDanhSachPhieu();
+    }
+
+    // =========================================================================
+    // XỬ LÝ NHẬP LÔ PHIẾU TỪ FILE EXCEL (CSV IMPORT)
+    // =========================================================================
+    let danhSachPhieuImport = [];
+
+    function moModalImportNhapXuat() {
+      danhSachPhieuImport = [];
+      document.getElementById('input-file-nhap-xuat').value = '';
+      document.getElementById('ten-file-da-chon-nx').innerText = 'Chưa có file nào được chọn';
+      document.getElementById('hop-preview-nhap-xuat').classList.add('hidden');
+      document.getElementById('nut-xac-nhan-import-nhap-xuat').disabled = true;
+
+      const modal = document.getElementById('modal-import-nhap-xuat');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function dongModalImportNhapXuat() {
+      const modal = document.getElementById('modal-import-nhap-xuat');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      danhSachPhieuImport = [];
+    }
+
+    function xuLyChonFileNhapXuat(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      document.getElementById('ten-file-da-chon-nx').innerText = `📄 Đã chọn file: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const text = evt.target.result;
+        const rows = StockExcel.docFileCSV(text);
+
+        if (!rows || rows.length <= 1) {
+          alert('File không có dữ liệu hoặc sai cấu trúc mẫu!');
+          return;
+        }
+
+        const dataRows = rows.slice(1);
+        const sanPhamList = StockStore.getSanPham();
+        const danhSachTam = [];
+
+        let soHopLe = 0;
+        let soLoi = 0;
+
+        dataRows.forEach((r, idx) => {
+          if (!r[0] && !r[1]) return; // Dòng trống
+
+          const loaiRaw = (r[0] || '').trim().toUpperCase();
+          const loai = loaiRaw.includes('NHAP') || loaiRaw.includes('NHẬP') ? 'nhap' : 'xuat';
+          const sku = (r[1] || '').trim().toUpperCase();
+          const soLuong = parseInt(r[2]) || 0;
+          let donGia = parseFloat(r[3]) || 0;
+          const doiTac = (r[4] || 'Đối tác nhập xuất').trim();
+          const kho = (r[5] || 'Kho Tổng Hà Nội').trim();
+          const ghiChu = (r[6] || '').trim();
+
+          const sp = sanPhamList.find(s => s.sku.toUpperCase() === sku);
+          let hopLe = true;
+          let lyDoLoi = '';
+
+          if (!sp) {
+            hopLe = false;
+            lyDoLoi = `SKU "${sku}" không có trong kho`;
+          } else if (soLuong <= 0) {
+            hopLe = false;
+            lyDoLoi = 'Số lượng phải > 0';
+          } else if (loai === 'xuat' && soLuong > sp.soLuong) {
+            hopLe = false;
+            lyDoLoi = `Vượt tồn kho (kho còn ${sp.soLuong})`;
+          }
+
+          if (donGia <= 0 && sp) {
+            donGia = loai === 'nhap' ? sp.giaNhap : sp.giaXuat;
+          }
+
+          if (hopLe) soHopLe++; else soLoi++;
+
+          danhSachTam.push({
+            idTemp: idx,
+            loai,
+            sku,
+            tenHang: sp ? sp.ten : 'Chưa xác định',
+            soLuong,
+            donGia,
+            tongTien: soLuong * donGia,
+            doiTac,
+            kho: sp ? sp.kho : kho,
+            ghiChu,
+            hopLe,
+            lyDoLoi
+          });
+        });
+
+        if (danhSachTam.length === 0) {
+          alert('Không tìm thấy dòng giao dịch hợp lệ nào trong file!');
+          return;
+        }
+
+        danhSachPhieuImport = danhSachTam;
+
+        document.getElementById('hop-preview-nhap-xuat').classList.remove('hidden');
+        document.getElementById('thong-ke-preview-nhap-xuat').innerHTML = `
+          Tổng <b>${danhSachTam.length}</b> dòng (<span class="text-emerald-600">${soHopLe} hợp lệ</span>${soLoi > 0 ? `, <span class="text-rose-600">${soLoi} lỗi</span>` : ''})
+        `;
+
+        const tbody = document.getElementById('bang-preview-nhap-xuat');
+        tbody.innerHTML = danhSachTam.slice(0, 10).map(p => `
+          <tr class="hover:bg-slate-50">
+            <td class="p-2 text-center">
+              ${p.loai === 'nhap' 
+                ? '<span class="px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[10px]">↓ Nhập</span>' 
+                : '<span class="px-1.5 py-0.5 rounded-full bg-rose-50 text-rose-700 font-bold text-[10px]">↑ Xuất</span>'}
+            </td>
+            <td class="p-2 font-mono font-bold text-slate-800">${p.sku}</td>
+            <td class="p-2 font-medium text-slate-900">${p.tenHang}</td>
+            <td class="p-2 text-center font-bold ${p.loai === 'nhap' ? 'text-emerald-700' : 'text-rose-700'}">${p.soLuong}</td>
+            <td class="p-2 text-slate-600">${p.doiTac}</td>
+            <td class="p-2 text-center">
+              ${p.hopLe 
+                ? '<span class="text-emerald-600 font-bold text-[10px]">✓ Hợp lệ</span>' 
+                : `<span class="text-rose-600 font-bold text-[10px]" title="${p.lyDoLoi}">✕ ${p.lyDoLoi}</span>`}
+            </td>
+          </tr>
+        `).join('') + (danhSachTam.length > 10 ? `<tr><td colspan="6" class="p-2 text-center text-slate-400 italic text-[10px]">... và ${danhSachTam.length - 10} giao dịch khác</td></tr>` : '');
+
+        const nutLuu = document.getElementById('nut-xac-nhan-import-nhap-xuat');
+        if (soHopLe > 0) {
+          nutLuu.disabled = false;
+          nutLuu.innerText = `Xác nhận tạo ${soHopLe} phiếu hợp lệ`;
+        } else {
+          nutLuu.disabled = true;
+          nutLuu.innerText = 'Toàn bộ dữ liệu bị lỗi, vui lòng kiểm tra lại';
+        }
+      };
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    function xacNhanImportNhapXuat() {
+      const danhSachHopLe = danhSachPhieuImport.filter(p => p.hopLe);
+      if (danhSachHopLe.length === 0) return;
+
+      let sanPhamList = StockStore.getSanPham();
+      let phieuList = StockStore.getPhieu();
+      const user = StockStore.getCurrentUser();
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} ${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+
+      let demNhap = 0;
+      let demXuat = 0;
+
+      danhSachHopLe.forEach((item, idx) => {
+        const sp = sanPhamList.find(s => s.sku.toUpperCase() === item.sku.toUpperCase());
+        if (!sp) return;
+
+        const maPhieu = (item.loai === 'nhap' ? 'NK-' : 'XK-') + now.getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+
+        if (item.loai === 'nhap') {
+          sp.soLuong += item.soLuong;
+          demNhap++;
+        } else {
+          sp.soLuong = Math.max(0, sp.soLuong - item.soLuong);
+          demXuat++;
+        }
+
+        const phieuMoi = {
+          id: 'm_' + Date.now() + '_' + idx,
+          maPhieu,
+          loai: item.loai,
+          doiTac: item.doiTac,
+          tenHang: sp.ten,
+          sku: sp.sku,
+          kho: sp.kho,
+          soLuong: item.soLuong,
+          donGia: item.donGia,
+          tongTien: item.tongTien,
+          thoiGian: timeStr,
+          nguoiLap: user ? user.ten : 'Thủ kho',
+          ghiChu: item.ghiChu ? `${item.ghiChu} (Nhập từ file Excel)` : 'Nhập lô từ file Excel'
+        };
+
+        phieuList.unshift(phieuMoi);
+      });
+
+      StockStore.setSanPham(sanPhamList);
+      StockStore.setPhieu(phieuList);
+      StockStore.ghiNhatKy('NHẬP EXCEL', 'PHIẾU KHO', `Nhập lô từ file Excel: Tạo ${demNhap} phiếu nhập và ${demXuat} phiếu xuất kho tự động`);
+
+      dongModalImportNhapXuat();
+      hienThongBao(`Đã tạo thành công ${danhSachHopLe.length} phiếu (${demNhap} nhập, ${demXuat} xuất)!`);
+      renderDanhSachPhieu();
+      napDanhSachSanPhamVaoForm();
     }
   </script>
 </body>

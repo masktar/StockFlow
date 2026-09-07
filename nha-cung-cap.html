@@ -30,10 +30,25 @@
           <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
         </div>
 
-        <button onclick="moModalThemNCC()" class="w-full sm:w-auto px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-1.5">
-          <span>+</span>
-          <span>Thêm Nhà cung cấp mới</span>
-        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap">
+          <!-- Nút Xuất báo cáo danh bạ & công nợ ra Excel -->
+          <button onclick="StockExcel.xuatBaoCaoNCC()" class="flex-1 sm:flex-none px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs" title="Xuất báo cáo danh bạ và tổng hợp công nợ đối tác tháng ra Excel">
+            <span>📊</span>
+            <span>Xuất Báo Cáo Tháng</span>
+          </button>
+
+          <!-- Nút Nhập danh sách NCC từ Excel -->
+          <button onclick="moModalImportNCC()" class="flex-1 sm:flex-none px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs" title="Nhập danh bạ nhiều nhà cung cấp/đối tác từ file Excel/CSV">
+            <span>📥</span>
+            <span>Nhập Excel</span>
+          </button>
+
+          <!-- Nút thêm thủ công -->
+          <button onclick="moModalThemNCC()" class="flex-1 sm:flex-none px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200 transition flex items-center justify-center gap-1.5">
+            <span>+</span>
+            <span>Thêm Nhà cung cấp</span>
+          </button>
+        </div>
       </div>
 
       <!-- Bảng nhà cung cấp -->
@@ -116,7 +131,85 @@
     </div>
   </div>
 
+  <!-- Modal NHẬP DANH SÁCH NHÀ CUNG CẤP TỪ EXCEL -->
+  <div id="modal-import-ncc" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
+            📥
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Nhập danh sách Nhà cung cấp từ Excel</h3>
+            <p class="text-slate-400 text-[11px]">Nhập số lượng lớn danh bạ đối tác, công nợ ban đầu và thông tin liên hệ</p>
+          </div>
+        </div>
+        <button onclick="dongModalImportNCC()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+      </div>
+
+      <!-- Hướng dẫn & Tải file mẫu -->
+      <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+        <div class="space-y-1">
+          <span class="font-bold text-slate-800 block">Bước 1: Tải file mẫu danh bạ</span>
+          <p class="text-slate-500 text-[11px] leading-relaxed">
+            Điền mã NCC, tên công ty, số điện thoại, email, địa chỉ và dư nợ vào file mẫu.
+          </p>
+        </div>
+        <button onclick="StockExcel.taiFileMauNCC()" class="px-3 py-2 bg-white hover:bg-slate-100 text-purple-700 border border-purple-200 rounded-xl font-bold text-xs shrink-0 shadow-2xs flex items-center gap-1.5">
+          <span>⬇️</span>
+          <span>Tải file Excel mẫu (.csv)</span>
+        </button>
+      </div>
+
+      <!-- Khu vực chọn file hoặc kéo thả -->
+      <div class="border-2 border-dashed border-slate-300 hover:border-purple-500 rounded-2xl p-6 text-center transition bg-slate-50/50 cursor-pointer" onclick="document.getElementById('input-file-ncc').click()">
+        <input type="file" id="input-file-ncc" accept=".csv, text/csv, text/plain" class="hidden" onchange="xuLyChonFileNCC(event)">
+        <div class="space-y-2">
+          <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mx-auto">
+            🏢
+          </div>
+          <div class="text-xs font-semibold text-slate-700">
+            Nhấp vào đây để chọn file Excel/CSV từ máy tính hoặc kéo thả file vào đây
+          </div>
+          <div id="ten-file-da-chon-ncc" class="text-[11px] text-purple-600 font-bold">Chưa có file nào được chọn</div>
+        </div>
+      </div>
+
+      <!-- Xem trước dữ liệu (Preview) -->
+      <div id="hop-preview-ncc" class="hidden space-y-3">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-slate-800">Xem trước danh sách đọc được:</span>
+          <span id="thong-ke-preview-ncc" class="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200"></span>
+        </div>
+        <div class="max-h-48 overflow-y-auto rounded-xl border border-slate-200 text-xs">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 text-[10px] uppercase text-slate-500 border-b border-slate-200 sticky top-0">
+              <tr>
+                <th class="p-2">Mã NCC</th>
+                <th class="p-2">Tên công ty</th>
+                <th class="p-2">Điện thoại</th>
+                <th class="p-2 text-right">Công nợ</th>
+                <th class="p-2 text-center">Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody id="bang-preview-ncc" class="divide-y divide-slate-100 text-[11px]"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+        <button type="button" onclick="dongModalImportNCC()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
+          Hủy bỏ
+        </button>
+        <button type="button" id="nut-xac-nhan-import-ncc" disabled onclick="xacNhanImportNCC()" class="px-4 py-2 bg-purple-700 hover:bg-purple-800 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold rounded-xl shadow-md shadow-purple-200">
+          Xác nhận lưu danh bạ
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="store.js"></script>
+  <script src="excel-helper.js"></script>
   <script src="api-service.js"></script>
   <script src="nav.js"></script>
   <script>
@@ -220,6 +313,158 @@
       StockStore.ghiNhatKy('XÓA NHÀ CUNG CẤP', ten, `Đã xóa nhà cung cấp ${ten}`);
 
       hienThongBao(`Đã xóa nhà cung cấp!`, 'error');
+      renderDanhSachNCC();
+    }
+
+    // =========================================================================
+    // XỬ LÝ NHẬP DANH SÁCH NHÀ CUNG CẤP TỪ EXCEL (CSV IMPORT)
+    // =========================================================================
+    let danhSachNCCImport = [];
+
+    function moModalImportNCC() {
+      danhSachNCCImport = [];
+      document.getElementById('input-file-ncc').value = '';
+      document.getElementById('ten-file-da-chon-ncc').innerText = 'Chưa có file nào được chọn';
+      document.getElementById('hop-preview-ncc').classList.add('hidden');
+      document.getElementById('nut-xac-nhan-import-ncc').disabled = true;
+
+      const modal = document.getElementById('modal-import-ncc');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function dongModalImportNCC() {
+      const modal = document.getElementById('modal-import-ncc');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      danhSachNCCImport = [];
+    }
+
+    function xuLyChonFileNCC(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      document.getElementById('ten-file-da-chon-ncc').innerText = `📄 Đã chọn file: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const text = evt.target.result;
+        const rows = StockExcel.docFileCSV(text);
+
+        if (!rows || rows.length <= 1) {
+          alert('File không có dữ liệu hoặc sai định dạng!');
+          return;
+        }
+
+        const dataRows = rows.slice(1);
+        const danhSachHienTai = StockStore.getNhaCungCap();
+        const danhSachTam = [];
+
+        let soMoi = 0;
+        let soCapNhat = 0;
+
+        dataRows.forEach((r, idx) => {
+          if (!r[0] && !r[1]) return;
+          const ma = (r[0] || '').trim().toUpperCase();
+          const ten = (r[1] || '').trim();
+
+          if (!ma || !ten) return;
+
+          const nguoiLienHe = (r[2] || '').trim();
+          const dienThoai = (r[3] || '').trim();
+          const email = (r[4] || '').trim();
+          const diaChi = (r[5] || '').trim();
+          const congNo = parseFloat(r[6]) || 0;
+
+          const daCo = danhSachHienTai.some(n => n.ma.toUpperCase() === ma);
+          if (daCo) soCapNhat++; else soMoi++;
+
+          danhSachTam.push({
+            idTemp: idx,
+            ma,
+            ten,
+            nguoiLienHe,
+            dienThoai,
+            email,
+            diaChi,
+            congNo,
+            daCo
+          });
+        });
+
+        if (danhSachTam.length === 0) {
+          alert('Không tìm thấy dòng đối tác hợp lệ trong file!');
+          return;
+        }
+
+        danhSachNCCImport = danhSachTam;
+
+        document.getElementById('hop-preview-ncc').classList.remove('hidden');
+        document.getElementById('thong-ke-preview-ncc').innerText = `Đọc được ${danhSachTam.length} đối tác (${soMoi} mới, ${soCapNhat} cập nhật)`;
+
+        const tbody = document.getElementById('bang-preview-ncc');
+        tbody.innerHTML = danhSachTam.slice(0, 10).map(item => `
+          <tr class="hover:bg-slate-50">
+            <td class="p-2 font-mono font-bold text-slate-800">${item.ma}</td>
+            <td class="p-2 font-bold text-slate-900">${item.ten}</td>
+            <td class="p-2 text-purple-700 font-medium">${item.dienThoai}</td>
+            <td class="p-2 text-right font-bold ${item.congNo > 0 ? 'text-amber-600' : 'text-slate-500'}">${dinhDangTien(item.congNo)}</td>
+            <td class="p-2 text-center">
+              ${item.daCo 
+                ? '<span class="px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-[10px] font-bold">Cập nhật</span>' 
+                : '<span class="px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">+ Thêm mới</span>'}
+            </td>
+          </tr>
+        `).join('') + (danhSachTam.length > 10 ? `<tr><td colspan="5" class="p-2 text-center text-slate-400 italic text-[10px]">... và ${danhSachTam.length - 10} đối tác khác</td></tr>` : '');
+
+        const nutLuu = document.getElementById('nut-xac-nhan-import-ncc');
+        nutLuu.disabled = false;
+        nutLuu.innerText = `Xác nhận lưu ${danhSachTam.length} đối tác`;
+      };
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    function xacNhanImportNCC() {
+      if (!danhSachNCCImport || danhSachNCCImport.length === 0) return;
+
+      let danhSach = StockStore.getNhaCungCap();
+      let demMoi = 0;
+      let demSua = 0;
+
+      danhSachNCCImport.forEach(item => {
+        const idx = danhSach.findIndex(n => n.ma.toUpperCase() === item.ma.toUpperCase());
+        if (idx !== -1) {
+          danhSach[idx] = {
+            ...danhSach[idx],
+            ten: item.ten,
+            nguoiLienHe: item.nguoiLienHe,
+            dienThoai: item.dienThoai,
+            email: item.email,
+            diaChi: item.diaChi,
+            congNo: item.congNo
+          };
+          demSua++;
+        } else {
+          danhSach.unshift({
+            id: 's_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+            ma: item.ma,
+            ten: item.ten,
+            nguoiLienHe: item.nguoiLienHe,
+            dienThoai: item.dienThoai,
+            email: item.email,
+            diaChi: item.diaChi,
+            congNo: item.congNo,
+            trangThai: 'active'
+          });
+          demMoi++;
+        }
+      });
+
+      StockStore.setNhaCungCap(danhSach);
+      StockStore.ghiNhatKy('NHẬP EXCEL', 'NHÀ CUNG CẤP', `Nhập file Excel: Thêm ${demMoi} nhà cung cấp mới, cập nhật ${demSua} đối tác`);
+
+      dongModalImportNCC();
+      hienThongBao(`Đã lưu thành công ${danhSachNCCImport.length} đối tác (${demMoi} mới, ${demSua} cập nhật)!`);
       renderDanhSachNCC();
     }
   </script>
