@@ -1,0 +1,8 @@
+{
+  "name": "StockFlow",
+  "description": "Hệ thống quản lý kho vận đa chi nhánh và xuất nhập tồn kho",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

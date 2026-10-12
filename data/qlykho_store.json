@@ -1,0 +1,3070 @@
+{
+  "danh_muc": [
+    {
+      "Ma_danh_muc": "DM01",
+      "Ten_danh_muc": "Điện thoại"
+    },
+    {
+      "Ma_danh_muc": "DM02",
+      "Ten_danh_muc": "Máy tính"
+    },
+    {
+      "Ma_danh_muc": "DM04",
+      "Ten_danh_muc": "Phụ kiện"
+    },
+    {
+      "Ma_danh_muc": "DM03",
+      "Ten_danh_muc": "Tablet"
+    }
+  ],
+  "kho": [
+    {
+      "Ma_kho": "K01",
+      "Ten_kho": "Kho Thanh Hóa 1",
+      "Dia_chi": "Dĩ An, Đồng Nai",
+      "Tong_suc_chua": 6511,
+      "SDT": "0792651274"
+    },
+    {
+      "Ma_kho": "K02",
+      "Ten_kho": "Kho Khánh Hòa 2",
+      "Dia_chi": "Biên Hòa, Bắc Ninh",
+      "Tong_suc_chua": 2138,
+      "SDT": "0887716833"
+    },
+    {
+      "Ma_kho": "K03",
+      "Ten_kho": "Kho Đồng Nai 3",
+      "Dia_chi": "Đống Đa, Hải Phòng",
+      "Tong_suc_chua": 3840,
+      "SDT": "0348572421"
+    },
+    {
+      "Ma_kho": "K04",
+      "Ten_kho": "Kho Bắc Ninh 4",
+      "Dia_chi": "Đống Đa, Nghệ An",
+      "Tong_suc_chua": 4088,
+      "SDT": "0819520085"
+    },
+    {
+      "Ma_kho": "K05",
+      "Ten_kho": "Kho Quảng Ninh 5",
+      "Dia_chi": "Cầu Giấy, Đà Nẵng",
+      "Tong_suc_chua": 9682,
+      "SDT": "0534852602"
+    },
+    {
+      "Ma_kho": "K06",
+      "Ten_kho": "Kho Huế 6",
+      "Dia_chi": "Ngô Quyền, Đà Nẵng",
+      "Tong_suc_chua": 4047,
+      "SDT": "0718728644"
+    },
+    {
+      "Ma_kho": "K07",
+      "Ten_kho": "Kho Cần Thơ 7",
+      "Dia_chi": "Huế Center, Thanh Hóa",
+      "Tong_suc_chua": 7784,
+      "SDT": "0384459259"
+    },
+    {
+      "Ma_kho": "K08",
+      "Ten_kho": "Kho Đồng Nai 8",
+      "Dia_chi": "Sầm Sơn, Đà Nẵng",
+      "Tong_suc_chua": 6637,
+      "SDT": "0487577279"
+    },
+    {
+      "Ma_kho": "K09",
+      "Ten_kho": "Kho Cần Thơ 9",
+      "Dia_chi": "Đà Lạt, Nghệ An",
+      "Tong_suc_chua": 7811,
+      "SDT": "0608883592"
+    },
+    {
+      "Ma_kho": "K10",
+      "Ten_kho": "Kho Nghệ An 10",
+      "Dia_chi": "Ninh Kiều, Bình Dương",
+      "Tong_suc_chua": 9508,
+      "SDT": "0817600233"
+    },
+    {
+      "Ma_kho": "K11",
+      "Ten_kho": "Kho Nghệ An 11",
+      "Dia_chi": "Hải Châu, Thanh Hóa",
+      "Tong_suc_chua": 9596,
+      "SDT": "0594025590"
+    },
+    {
+      "Ma_kho": "K12",
+      "Ten_kho": "Kho Lâm Đồng 12",
+      "Dia_chi": "Hải Châu, Lâm Đồng",
+      "Tong_suc_chua": 4511,
+      "SDT": "0548393869"
+    },
+    {
+      "Ma_kho": "K13",
+      "Ten_kho": "Kho Hà Nội 13",
+      "Dia_chi": "Thủ Đức, Long An",
+      "Tong_suc_chua": 8440,
+      "SDT": "0993292768"
+    },
+    {
+      "Ma_kho": "K14",
+      "Ten_kho": "Kho Bình Dương 14",
+      "Dia_chi": "Huế Center, Thanh Hóa",
+      "Tong_suc_chua": 3989,
+      "SDT": "0329189427"
+    },
+    {
+      "Ma_kho": "K15",
+      "Ten_kho": "Kho Bình Dương 15",
+      "Dia_chi": "Ninh Kiều, Bình Dương",
+      "Tong_suc_chua": 9820,
+      "SDT": "0532510681"
+    },
+    {
+      "Ma_kho": "K16",
+      "Ten_kho": "Kho TP.HCM 16",
+      "Dia_chi": "Vinh City, Thanh Hóa",
+      "Tong_suc_chua": 4513,
+      "SDT": "0911855694"
+    },
+    {
+      "Ma_kho": "K17",
+      "Ten_kho": "Kho Cần Thơ 17",
+      "Dia_chi": "Vinh City, Bắc Ninh",
+      "Tong_suc_chua": 3172,
+      "SDT": "0408937268"
+    },
+    {
+      "Ma_kho": "K18",
+      "Ten_kho": "Kho Huế 18",
+      "Dia_chi": "Vinh City, TP.HCM",
+      "Tong_suc_chua": 8144,
+      "SDT": "0483905224"
+    },
+    {
+      "Ma_kho": "K19",
+      "Ten_kho": "Kho TP.HCM 19",
+      "Dia_chi": "Đống Đa, Huế",
+      "Tong_suc_chua": 6836,
+      "SDT": "0499173937"
+    },
+    {
+      "Ma_kho": "K20",
+      "Ten_kho": "Kho Bắc Ninh 20",
+      "Dia_chi": "Hải Châu, Thanh Hóa",
+      "Tong_suc_chua": 6137,
+      "SDT": "0597196778"
+    },
+    {
+      "Ma_kho": "K21",
+      "Ten_kho": "Kho Khánh Hòa 21",
+      "Dia_chi": "Thủ Đức, Cần Thơ",
+      "Tong_suc_chua": 6154,
+      "SDT": "0473292139"
+    },
+    {
+      "Ma_kho": "K22",
+      "Ten_kho": "Kho Cần Thơ 22",
+      "Dia_chi": "Vinh City, TP.HCM",
+      "Tong_suc_chua": 1227,
+      "SDT": "0741997588"
+    },
+    {
+      "Ma_kho": "K23",
+      "Ten_kho": "Kho Lâm Đồng 23",
+      "Dia_chi": "Vinh City, Đồng Nai",
+      "Tong_suc_chua": 1252,
+      "SDT": "0361537874"
+    },
+    {
+      "Ma_kho": "K24",
+      "Ten_kho": "Kho TP.HCM 24",
+      "Dia_chi": "Biên Hòa, Hà Nội",
+      "Tong_suc_chua": 6077,
+      "SDT": "0432092060"
+    },
+    {
+      "Ma_kho": "K25",
+      "Ten_kho": "Kho TP.HCM 25",
+      "Dia_chi": "Từ Sơn, Bình Dương",
+      "Tong_suc_chua": 8471,
+      "SDT": "0952035156"
+    },
+    {
+      "Ma_kho": "K26",
+      "Ten_kho": "Kho Bắc Ninh 26",
+      "Dia_chi": "Đống Đa, Long An",
+      "Tong_suc_chua": 7622,
+      "SDT": "0639370843"
+    },
+    {
+      "Ma_kho": "K27",
+      "Ten_kho": "Kho Khánh Hòa 27",
+      "Dia_chi": "Dĩ An, Khánh Hòa",
+      "Tong_suc_chua": 8580,
+      "SDT": "0757547120"
+    },
+    {
+      "Ma_kho": "K28",
+      "Ten_kho": "Kho Bắc Ninh 28",
+      "Dia_chi": "Hải Châu, Bắc Ninh",
+      "Tong_suc_chua": 7130,
+      "SDT": "0838225743"
+    },
+    {
+      "Ma_kho": "K29",
+      "Ten_kho": "Kho Bắc Ninh 29",
+      "Dia_chi": "Vinh City, Đồng Nai",
+      "Tong_suc_chua": 5782,
+      "SDT": "0682593446"
+    },
+    {
+      "Ma_kho": "K30",
+      "Ten_kho": "Kho Hà Nội 30",
+      "Dia_chi": "Huế Center, Long An",
+      "Tong_suc_chua": 1387,
+      "SDT": "0602184162"
+    },
+    {
+      "Ma_kho": "K31",
+      "Ten_kho": "Kho Quảng Ninh 31",
+      "Dia_chi": "Nha Trang, Cần Thơ",
+      "Tong_suc_chua": 3004,
+      "SDT": "0618839064"
+    },
+    {
+      "Ma_kho": "K32",
+      "Ten_kho": "Kho Huế 32",
+      "Dia_chi": "Huế Center, Bình Dương",
+      "Tong_suc_chua": 1332,
+      "SDT": "0882136465"
+    },
+    {
+      "Ma_kho": "K33",
+      "Ten_kho": "Kho Bình Dương 33",
+      "Dia_chi": "Dĩ An, Thanh Hóa",
+      "Tong_suc_chua": 1919,
+      "SDT": "0420900758"
+    },
+    {
+      "Ma_kho": "K34",
+      "Ten_kho": "Kho Đà Nẵng 34",
+      "Dia_chi": "Hải Châu, TP.HCM",
+      "Tong_suc_chua": 1611,
+      "SDT": "0434949974"
+    },
+    {
+      "Ma_kho": "K35",
+      "Ten_kho": "Kho Thanh Hóa 35",
+      "Dia_chi": "Từ Sơn, Khánh Hòa",
+      "Tong_suc_chua": 5951,
+      "SDT": "0330917511"
+    },
+    {
+      "Ma_kho": "K36",
+      "Ten_kho": "Kho Đồng Nai 36",
+      "Dia_chi": "Ngô Quyền, Bình Dương",
+      "Tong_suc_chua": 7804,
+      "SDT": "0712430588"
+    },
+    {
+      "Ma_kho": "K37",
+      "Ten_kho": "Kho Đồng Nai 37",
+      "Dia_chi": "Biên Hòa, Huế",
+      "Tong_suc_chua": 7897,
+      "SDT": "0535756434"
+    },
+    {
+      "Ma_kho": "K38",
+      "Ten_kho": "Kho Huế 38",
+      "Dia_chi": "Ngô Quyền, Đà Nẵng",
+      "Tong_suc_chua": 9895,
+      "SDT": "0330512653"
+    },
+    {
+      "Ma_kho": "K39",
+      "Ten_kho": "Kho Bắc Ninh 39",
+      "Dia_chi": "Hạ Long, Long An",
+      "Tong_suc_chua": 5177,
+      "SDT": "0458573823"
+    },
+    {
+      "Ma_kho": "K40",
+      "Ten_kho": "Kho Hải Phòng 40",
+      "Dia_chi": "Cầu Giấy, Hà Nội",
+      "Tong_suc_chua": 5535,
+      "SDT": "0881055366"
+    },
+    {
+      "Ma_kho": "K41",
+      "Ten_kho": "Kho Nghệ An 41",
+      "Dia_chi": "Huế Center, Cần Thơ",
+      "Tong_suc_chua": 6156,
+      "SDT": "0448882296"
+    },
+    {
+      "Ma_kho": "K42",
+      "Ten_kho": "Kho Bắc Ninh 42",
+      "Dia_chi": "Thủ Đức, Lâm Đồng",
+      "Tong_suc_chua": 3937,
+      "SDT": "0893760025"
+    },
+    {
+      "Ma_kho": "K43",
+      "Ten_kho": "Kho Hà Nội 43",
+      "Dia_chi": "Vinh City, Bình Dương",
+      "Tong_suc_chua": 9527,
+      "SDT": "0640910820"
+    },
+    {
+      "Ma_kho": "K44",
+      "Ten_kho": "Kho Hà Nội 44",
+      "Dia_chi": "Cầu Giấy, Bắc Ninh",
+      "Tong_suc_chua": 4978,
+      "SDT": "0805243914"
+    },
+    {
+      "Ma_kho": "K45",
+      "Ten_kho": "Kho Hà Nội 45",
+      "Dia_chi": "Biên Hòa, Bắc Ninh",
+      "Tong_suc_chua": 9333,
+      "SDT": "0461970548"
+    },
+    {
+      "Ma_kho": "K46",
+      "Ten_kho": "Kho Long An 46",
+      "Dia_chi": "Hạ Long, Quảng Ninh",
+      "Tong_suc_chua": 6897,
+      "SDT": "0549658639"
+    },
+    {
+      "Ma_kho": "K47",
+      "Ten_kho": "Kho Thanh Hóa 47",
+      "Dia_chi": "Vinh City, Bình Dương",
+      "Tong_suc_chua": 4292,
+      "SDT": "0702359538"
+    },
+    {
+      "Ma_kho": "K48",
+      "Ten_kho": "Kho Bình Dương 48",
+      "Dia_chi": "Đà Lạt, Bắc Ninh",
+      "Tong_suc_chua": 8496,
+      "SDT": "0889264693"
+    },
+    {
+      "Ma_kho": "K49",
+      "Ten_kho": "Kho Huế 49",
+      "Dia_chi": "Tân An, Long An",
+      "Tong_suc_chua": 6114,
+      "SDT": "0501758532"
+    },
+    {
+      "Ma_kho": "K50",
+      "Ten_kho": "Kho Đà Nẵng 50",
+      "Dia_chi": "Huế Center, Đà Nẵng",
+      "Tong_suc_chua": 8943,
+      "SDT": "0305703511"
+    }
+  ],
+  "nha_cung_cap": [
+    {
+      "Ma_ncc": "NCC01",
+      "Ten_ncc": "Công ty TNHH Minh Phát",
+      "Dia_chi": "Nha Trang, Thanh Hóa",
+      "SDT": "0849565454",
+      "Email": "minhphat1@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC02",
+      "Ten_ncc": "Công ty TNHH Hoàng Long",
+      "Dia_chi": "Biên Hòa, Long An",
+      "SDT": "0945351751",
+      "Email": "hoanglong2@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC03",
+      "Ten_ncc": "Tập đoàn An Khang",
+      "Dia_chi": "Huế Center, Huế",
+      "SDT": "0914791075",
+      "Email": "ankhang3@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC04",
+      "Ten_ncc": "Tập đoàn Phú Quý",
+      "Dia_chi": "Tân An, Huế",
+      "SDT": "0929771961",
+      "Email": "phuquy4@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC05",
+      "Ten_ncc": "Doanh nghiệp tư nhân Thịnh Vượng",
+      "Dia_chi": "Biên Hòa, Hà Nội",
+      "SDT": "0959496827",
+      "Email": "thinhvuong5@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC06",
+      "Ten_ncc": "Công ty TNHH Đại Dương",
+      "Dia_chi": "Hải Châu, Cần Thơ",
+      "SDT": "0405282126",
+      "Email": "daiduong6@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC07",
+      "Ten_ncc": "Doanh nghiệp tư nhân Hòa Bình",
+      "Dia_chi": "Cầu Giấy, Lâm Đồng",
+      "SDT": "0826441373",
+      "Email": "hoabinh7@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC08",
+      "Ten_ncc": "Công ty TNHH MTV Nam Phong",
+      "Dia_chi": "Dĩ An, Đồng Nai",
+      "SDT": "0570060143",
+      "Email": "namphong8@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC09",
+      "Ten_ncc": "Công ty TNHH MTV Việt Thành",
+      "Dia_chi": "Từ Sơn, Huế",
+      "SDT": "0704096818",
+      "Email": "vietthanh9@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC10",
+      "Ten_ncc": "Tập đoàn Tân Tiến",
+      "Dia_chi": "Thủ Đức, Quảng Ninh",
+      "SDT": "0665495893",
+      "Email": "tantien10@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC11",
+      "Ten_ncc": "Công ty TNHH Sao Mai",
+      "Dia_chi": "Sầm Sơn, Cần Thơ",
+      "SDT": "0791180832",
+      "Email": "saomai11@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC12",
+      "Ten_ncc": "Công ty CP Hồng Hà",
+      "Dia_chi": "Sầm Sơn, Hà Nội",
+      "SDT": "0696043876",
+      "Email": "hongha12@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC13",
+      "Ten_ncc": "Công ty TNHH MTV Bảo Long",
+      "Dia_chi": "Đà Lạt, Đồng Nai",
+      "SDT": "0397371420",
+      "Email": "baolong13@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC14",
+      "Ten_ncc": "Doanh nghiệp tư nhân Kim Cương",
+      "Dia_chi": "Tân An, Lâm Đồng",
+      "SDT": "0425035027",
+      "Email": "kimcuong14@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC15",
+      "Ten_ncc": "Doanh nghiệp tư nhân Phương Nam",
+      "Dia_chi": "Tân An, Đồng Nai",
+      "SDT": "0863341564",
+      "Email": "phuongnam15@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC16",
+      "Ten_ncc": "Công ty TNHH MTV Đông Á",
+      "Dia_chi": "Huế Center, Khánh Hòa",
+      "SDT": "0814526311",
+      "Email": "donga16@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC17",
+      "Ten_ncc": "Tập đoàn Thành Công",
+      "Dia_chi": "Cầu Giấy, Khánh Hòa",
+      "SDT": "0541081736",
+      "Email": "thanhcong17@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC18",
+      "Ten_ncc": "Công ty CP Vạn Phát",
+      "Dia_chi": "Đống Đa, Quảng Ninh",
+      "SDT": "0861799480",
+      "Email": "vanphat18@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC19",
+      "Ten_ncc": "Công ty TNHH Gia Hưng",
+      "Dia_chi": "Huế Center, Nghệ An",
+      "SDT": "0452914319",
+      "Email": "giahung19@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC20",
+      "Ten_ncc": "Doanh nghiệp tư nhân Tân Á",
+      "Dia_chi": "Biên Hòa, Lâm Đồng",
+      "SDT": "0431010732",
+      "Email": "tana20@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC21",
+      "Ten_ncc": "Doanh nghiệp tư nhân Hùng Vương",
+      "Dia_chi": "Tân An, Quảng Ninh",
+      "SDT": "0885868185",
+      "Email": "hungvuong21@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC22",
+      "Ten_ncc": "Công ty TNHH MTV Thăng Long",
+      "Dia_chi": "Hạ Long, Bắc Ninh",
+      "SDT": "0630312277",
+      "Email": "thanglong22@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC23",
+      "Ten_ncc": "Tập đoàn Bình Minh",
+      "Dia_chi": "Tân An, Huế",
+      "SDT": "0731588425",
+      "Email": "binhminh23@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC24",
+      "Ten_ncc": "Doanh nghiệp tư nhân Toàn Cầu",
+      "Dia_chi": "Dĩ An, Cần Thơ",
+      "SDT": "0588875140",
+      "Email": "toancau24@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC25",
+      "Ten_ncc": "Công ty TNHH Việt Phát",
+      "Dia_chi": "Đống Đa, Đà Nẵng",
+      "SDT": "0941317229",
+      "Email": "vietphat25@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC26",
+      "Ten_ncc": "Doanh nghiệp tư nhân Đức Thịnh",
+      "Dia_chi": "Tân An, Bình Dương",
+      "SDT": "0514573957",
+      "Email": "ducthinh26@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC27",
+      "Ten_ncc": "Công ty TNHH MTV Hải Âu",
+      "Dia_chi": "Tân An, Nghệ An",
+      "SDT": "0848968520",
+      "Email": "haiau27@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC28",
+      "Ten_ncc": "Doanh nghiệp tư nhân Phúc Khang",
+      "Dia_chi": "Huế Center, Thanh Hóa",
+      "SDT": "0336099144",
+      "Email": "phuckhang28@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC29",
+      "Ten_ncc": "Công ty TNHH MTV Đại Phát",
+      "Dia_chi": "Nha Trang, Nghệ An",
+      "SDT": "0405628266",
+      "Email": "daiphat29@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC30",
+      "Ten_ncc": "Doanh nghiệp tư nhân An Bình",
+      "Dia_chi": "Vinh City, Nghệ An",
+      "SDT": "0496547184",
+      "Email": "anbinh30@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC31",
+      "Ten_ncc": "Doanh nghiệp tư nhân Trường Thịnh",
+      "Dia_chi": "Tân An, TP.HCM",
+      "SDT": "0996373372",
+      "Email": "truongthinh31@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC32",
+      "Ten_ncc": "Công ty TNHH MTV Nhật Minh",
+      "Dia_chi": "Tân An, Bình Dương",
+      "SDT": "0403790621",
+      "Email": "nhatminh32@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC33",
+      "Ten_ncc": "Công ty CP Hoàng Gia",
+      "Dia_chi": "Huế Center, Đà Nẵng",
+      "SDT": "0782534007",
+      "Email": "hoanggia33@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC34",
+      "Ten_ncc": "Công ty TNHH Á Châu",
+      "Dia_chi": "Thủ Đức, Hà Nội",
+      "SDT": "0784504869",
+      "Email": "achau34@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC35",
+      "Ten_ncc": "Tập đoàn Việt Tín",
+      "Dia_chi": "Thủ Đức, Khánh Hòa",
+      "SDT": "0513450963",
+      "Email": "viettin35@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC36",
+      "Ten_ncc": "Công ty CP Minh Long",
+      "Dia_chi": "Hải Châu, Khánh Hòa",
+      "SDT": "0347952316",
+      "Email": "minhlong36@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC37",
+      "Ten_ncc": "Tập đoàn Thiên Phú",
+      "Dia_chi": "Vinh City, Bắc Ninh",
+      "SDT": "0982264666",
+      "Email": "thienphu37@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC38",
+      "Ten_ncc": "Công ty TNHH MTV Sài Gòn Xanh",
+      "Dia_chi": "Ngô Quyền, Hà Nội",
+      "SDT": "0636556570",
+      "Email": "saigonxanh38@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC39",
+      "Ten_ncc": "Tập đoàn Hồng Phúc",
+      "Dia_chi": "Tân An, Quảng Ninh",
+      "SDT": "0444809748",
+      "Email": "hongphuc39@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC40",
+      "Ten_ncc": "Tập đoàn Cát Tường",
+      "Dia_chi": "Biên Hòa, Nghệ An",
+      "SDT": "0931289885",
+      "Email": "cattuong40@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC41",
+      "Ten_ncc": "Công ty CP Phát Đạt",
+      "Dia_chi": "Sầm Sơn, TP.HCM",
+      "SDT": "0748586715",
+      "Email": "phatdat41@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC42",
+      "Ten_ncc": "Công ty CP Kim Long",
+      "Dia_chi": "Ngô Quyền, Huế",
+      "SDT": "0929244052",
+      "Email": "kimlong42@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC43",
+      "Ten_ncc": "Công ty TNHH MTV Quang Minh",
+      "Dia_chi": "Huế Center, Đồng Nai",
+      "SDT": "0459489639",
+      "Email": "quangminh43@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC44",
+      "Ten_ncc": "Tập đoàn Bảo Tín",
+      "Dia_chi": "Dĩ An, Đồng Nai",
+      "SDT": "0315173982",
+      "Email": "baotin44@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC45",
+      "Ten_ncc": "Công ty TNHH Tân Thịnh",
+      "Dia_chi": "Hạ Long, Long An",
+      "SDT": "0378848440",
+      "Email": "tanthinh45@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC46",
+      "Ten_ncc": "Công ty TNHH Hòa Phát",
+      "Dia_chi": "Từ Sơn, Bắc Ninh",
+      "SDT": "0679463372",
+      "Email": "hoaphat46@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC47",
+      "Ten_ncc": "Công ty TNHH Song Long",
+      "Dia_chi": "Cầu Giấy, Thanh Hóa",
+      "SDT": "0811127328",
+      "Email": "songlong47@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC48",
+      "Ten_ncc": "Công ty TNHH MTV Đông Dương",
+      "Dia_chi": "Sầm Sơn, Nghệ An",
+      "SDT": "0650085734",
+      "Email": "dongduong48@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC49",
+      "Ten_ncc": "Công ty TNHH Việt Á",
+      "Dia_chi": "Tân An, Nghệ An",
+      "SDT": "0913770386",
+      "Email": "vieta49@supplier.vn"
+    },
+    {
+      "Ma_ncc": "NCC50",
+      "Ten_ncc": "Tập đoàn Hưng Thịnh",
+      "Dia_chi": "Ninh Kiều, Đà Nẵng",
+      "SDT": "0934862558",
+      "Email": "hungthinh50@supplier.vn"
+    }
+  ],
+  "nhan_vien": [
+    {
+      "Ma_nhan_vien": "NV001",
+      "Ten_nhan_vien": "Ngô Thị Hương",
+      "Vai_tro": "Quản trị viên (Admin)",
+      "Sdt": "0694644927",
+      "Email": "ngothihuong1@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": null
+    },
+    {
+      "Ma_nhan_vien": "NV002",
+      "Ten_nhan_vien": "Đỗ Anh Khang",
+      "Vai_tro": "Quản trị viên (Admin)",
+      "Sdt": "0729417229",
+      "Email": "doanhkhang2@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": null
+    },
+    {
+      "Ma_nhan_vien": "NV003",
+      "Ten_nhan_vien": "Phạm Văn Vinh",
+      "Vai_tro": "Quản lý kho",
+      "Sdt": "0924642010",
+      "Email": "phamvanvinh3@stockflow.vn",
+      "Trang_thai": "Nghỉ việc",
+      "Ma_nv_quan_ly": "NV002"
+    },
+    {
+      "Ma_nhan_vien": "NV004",
+      "Ten_nhan_vien": "Đặng Văn Phong",
+      "Vai_tro": "Quản lý kho",
+      "Sdt": "0369314647",
+      "Email": "dangvanphong4@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV002"
+    },
+    {
+      "Ma_nhan_vien": "NV005",
+      "Ten_nhan_vien": "Huỳnh Anh Dũng",
+      "Vai_tro": "Quản lý kho",
+      "Sdt": "0818184808",
+      "Email": "huynhanhdung5@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV002"
+    },
+    {
+      "Ma_nhan_vien": "NV006",
+      "Ten_nhan_vien": "Hồ Thành Vinh",
+      "Vai_tro": "Quản lý kho",
+      "Sdt": "0825311624",
+      "Email": "hothanhvinh6@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV002"
+    },
+    {
+      "Ma_nhan_vien": "NV007",
+      "Ten_nhan_vien": "Trần Quốc Giang",
+      "Vai_tro": "Quản lý kho",
+      "Sdt": "0686632201",
+      "Email": "tranquocgiang7@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV001"
+    },
+    {
+      "Ma_nhan_vien": "NV008",
+      "Ten_nhan_vien": "Đặng Bích Nhung",
+      "Vai_tro": "Quản lý kho",
+      "Sdt": "0576477924",
+      "Email": "dangbichnhung8@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV002"
+    },
+    {
+      "Ma_nhan_vien": "NV009",
+      "Ten_nhan_vien": "Hồ Quốc An",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0977038636",
+      "Email": "hoquocan9@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV010",
+      "Ten_nhan_vien": "Lý Diệu Nhung",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0530686646",
+      "Email": "lydieunhung10@stockflow.vn",
+      "Trang_thai": "Nghỉ việc",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV011",
+      "Ten_nhan_vien": "Huỳnh Thị Hương",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0525131600",
+      "Email": "huynhthihuong11@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV012",
+      "Ten_nhan_vien": "Hoàng Minh An",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0435812833",
+      "Email": "hoangminhan12@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    },
+    {
+      "Ma_nhan_vien": "NV013",
+      "Ten_nhan_vien": "Nguyễn Hồng Dung",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0824612608",
+      "Email": "nguyenhongdung13@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV014",
+      "Ten_nhan_vien": "Phan Anh Em",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0649782776",
+      "Email": "phananhem14@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV015",
+      "Ten_nhan_vien": "Vũ Thu Giang",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0720909020",
+      "Email": "vuthugiang15@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV016",
+      "Ten_nhan_vien": "Lý Ngọc Dung",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0878847511",
+      "Email": "lyngocdung16@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV017",
+      "Ten_nhan_vien": "Đặng Hữu Nam",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0891963319",
+      "Email": "danghuunam17@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV018",
+      "Ten_nhan_vien": "Lý Hữu Vinh",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0454595263",
+      "Email": "lyhuuvinh18@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV019",
+      "Ten_nhan_vien": "Đỗ Thanh Nhung",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0915192193",
+      "Email": "dothanhnhung19@stockflow.vn",
+      "Trang_thai": "Nghỉ việc",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV020",
+      "Ten_nhan_vien": "Lê Xuân Long",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0337069718",
+      "Email": "lexuanlong20@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    },
+    {
+      "Ma_nhan_vien": "NV021",
+      "Ten_nhan_vien": "Vũ Minh Minh",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0492185102",
+      "Email": "vuminhminh21@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV022",
+      "Ten_nhan_vien": "Bùi Thành Tuấn",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0682950936",
+      "Email": "buithanhtuan22@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV023",
+      "Ten_nhan_vien": "Huỳnh Quốc Sơn",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0500330228",
+      "Email": "huynhquocson23@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV024",
+      "Ten_nhan_vien": "Đỗ Thành Quang",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0465247214",
+      "Email": "dothanhquang24@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV025",
+      "Ten_nhan_vien": "Hồ Kim Hoa",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0825856788",
+      "Email": "hokimhoa25@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV003"
+    },
+    {
+      "Ma_nhan_vien": "NV026",
+      "Ten_nhan_vien": "Hoàng Công Khang",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0622818521",
+      "Email": "hoangcongkhang26@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    },
+    {
+      "Ma_nhan_vien": "NV027",
+      "Ten_nhan_vien": "Phạm Thành Khang",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0882768978",
+      "Email": "phamthanhkhang27@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV028",
+      "Ten_nhan_vien": "Dương Bích Hoa",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0736793833",
+      "Email": "duongbichhoa28@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    },
+    {
+      "Ma_nhan_vien": "NV029",
+      "Ten_nhan_vien": "Võ Kim Ngọc",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0456386076",
+      "Email": "vokimngoc29@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV003"
+    },
+    {
+      "Ma_nhan_vien": "NV030",
+      "Ten_nhan_vien": "Phạm Bích Nga",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0805557704",
+      "Email": "phambichnga30@stockflow.vn",
+      "Trang_thai": "Nghỉ việc",
+      "Ma_nv_quan_ly": "NV003"
+    },
+    {
+      "Ma_nhan_vien": "NV031",
+      "Ten_nhan_vien": "Hồ Diệu Anh",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0679058830",
+      "Email": "hodieuanh31@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV032",
+      "Ten_nhan_vien": "Bùi Diệu Ngọc",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0576196143",
+      "Email": "buidieungoc32@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV003"
+    },
+    {
+      "Ma_nhan_vien": "NV033",
+      "Ten_nhan_vien": "Lý Anh Việt",
+      "Vai_tro": "Thủ Kho",
+      "Sdt": "0475890092",
+      "Email": "lyanhviet33@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV003"
+    },
+    {
+      "Ma_nhan_vien": "NV034",
+      "Ten_nhan_vien": "Đỗ Thành Bình",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0754021160",
+      "Email": "dothanhbinh34@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV035",
+      "Ten_nhan_vien": "Huỳnh Thị Mai",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0483254552",
+      "Email": "huynhthimai35@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV036",
+      "Ten_nhan_vien": "Võ Thu Ngọc",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0831027380",
+      "Email": "vothungoc36@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV037",
+      "Ten_nhan_vien": "Ngô Thanh Trinh",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0875377032",
+      "Email": "ngothanhtrinh37@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV006"
+    },
+    {
+      "Ma_nhan_vien": "NV038",
+      "Ten_nhan_vien": "Trần Quốc Dũng",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0754383407",
+      "Email": "tranquocdung38@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    },
+    {
+      "Ma_nhan_vien": "NV039",
+      "Ten_nhan_vien": "Võ Hồng Anh",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0524606470",
+      "Email": "vohonganh39@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV040",
+      "Ten_nhan_vien": "Dương Bích Nhung",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0772958185",
+      "Email": "duongbichnhung40@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV041",
+      "Ten_nhan_vien": "Phan Anh An",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0951341162",
+      "Email": "phananhan41@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV042",
+      "Ten_nhan_vien": "Hoàng Hồng Linh",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0509859033",
+      "Email": "hoanghonglinh42@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV003"
+    },
+    {
+      "Ma_nhan_vien": "NV043",
+      "Ten_nhan_vien": "Phan Thu Nga",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0680035249",
+      "Email": "phanthunga43@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV044",
+      "Ten_nhan_vien": "Ngô Anh Vinh",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0469722624",
+      "Email": "ngoanhvinh44@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV045",
+      "Ten_nhan_vien": "Nguyễn Đức Quang",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0988381610",
+      "Email": "nguyenducquang45@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV006"
+    },
+    {
+      "Ma_nhan_vien": "NV046",
+      "Ten_nhan_vien": "Vũ Xuân Minh",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0332751084",
+      "Email": "vuxuanminh46@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV004"
+    },
+    {
+      "Ma_nhan_vien": "NV047",
+      "Ten_nhan_vien": "Bùi Xuân Khang",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0995991668",
+      "Email": "buixuankhang47@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV008"
+    },
+    {
+      "Ma_nhan_vien": "NV048",
+      "Ten_nhan_vien": "Bùi Đức Bình",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0588548201",
+      "Email": "buiducbinh48@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    },
+    {
+      "Ma_nhan_vien": "NV049",
+      "Ten_nhan_vien": "Hoàng Thị Trinh",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0727673333",
+      "Email": "hoangthitrinh49@stockflow.vn",
+      "Trang_thai": "Nghỉ việc",
+      "Ma_nv_quan_ly": "NV007"
+    },
+    {
+      "Ma_nhan_vien": "NV050",
+      "Ten_nhan_vien": "Võ Thanh Lan",
+      "Vai_tro": "Kế toán",
+      "Sdt": "0794140383",
+      "Email": "vothanhlan50@stockflow.vn",
+      "Trang_thai": "Đang làm",
+      "Ma_nv_quan_ly": "NV005"
+    }
+  ],
+  "dang_nhap": [
+    {
+      "Email": "ngothihuong1@stockflow.vn",
+      "Mat_khau": "0694644927"
+    },
+    {
+      "Email": "doanhkhang2@stockflow.vn",
+      "Mat_khau": "0729417229"
+    },
+    {
+      "Email": "phamvanvinh3@stockflow.vn",
+      "Mat_khau": "0924642010"
+    },
+    {
+      "Email": "dangvanphong4@stockflow.vn",
+      "Mat_khau": "0369314647"
+    },
+    {
+      "Email": "huynhanhdung5@stockflow.vn",
+      "Mat_khau": "0818184808"
+    },
+    {
+      "Email": "hothanhvinh6@stockflow.vn",
+      "Mat_khau": "0825311624"
+    },
+    {
+      "Email": "tranquocgiang7@stockflow.vn",
+      "Mat_khau": "0686632201"
+    },
+    {
+      "Email": "dangbichnhung8@stockflow.vn",
+      "Mat_khau": "0576477924"
+    },
+    {
+      "Email": "hoquocan9@stockflow.vn",
+      "Mat_khau": "0977038636"
+    },
+    {
+      "Email": "lydieunhung10@stockflow.vn",
+      "Mat_khau": "0530686646"
+    },
+    {
+      "Email": "huynhthihuong11@stockflow.vn",
+      "Mat_khau": "0525131600"
+    },
+    {
+      "Email": "hoangminhan12@stockflow.vn",
+      "Mat_khau": "0435812833"
+    },
+    {
+      "Email": "nguyenhongdung13@stockflow.vn",
+      "Mat_khau": "0824612608"
+    },
+    {
+      "Email": "phananhem14@stockflow.vn",
+      "Mat_khau": "0649782776"
+    },
+    {
+      "Email": "vuthugiang15@stockflow.vn",
+      "Mat_khau": "0720909020"
+    },
+    {
+      "Email": "lyngocdung16@stockflow.vn",
+      "Mat_khau": "0878847511"
+    },
+    {
+      "Email": "danghuunam17@stockflow.vn",
+      "Mat_khau": "0891963319"
+    },
+    {
+      "Email": "lyhuuvinh18@stockflow.vn",
+      "Mat_khau": "0454595263"
+    },
+    {
+      "Email": "dothanhnhung19@stockflow.vn",
+      "Mat_khau": "0915192193"
+    },
+    {
+      "Email": "lexuanlong20@stockflow.vn",
+      "Mat_khau": "0337069718"
+    },
+    {
+      "Email": "vuminhminh21@stockflow.vn",
+      "Mat_khau": "0492185102"
+    },
+    {
+      "Email": "buithanhtuan22@stockflow.vn",
+      "Mat_khau": "0682950936"
+    },
+    {
+      "Email": "huynhquocson23@stockflow.vn",
+      "Mat_khau": "0500330228"
+    },
+    {
+      "Email": "dothanhquang24@stockflow.vn",
+      "Mat_khau": "0465247214"
+    },
+    {
+      "Email": "hokimhoa25@stockflow.vn",
+      "Mat_khau": "0825856788"
+    },
+    {
+      "Email": "hoangcongkhang26@stockflow.vn",
+      "Mat_khau": "0622818521"
+    },
+    {
+      "Email": "phamthanhkhang27@stockflow.vn",
+      "Mat_khau": "0882768978"
+    },
+    {
+      "Email": "duongbichhoa28@stockflow.vn",
+      "Mat_khau": "0736793833"
+    },
+    {
+      "Email": "vokimngoc29@stockflow.vn",
+      "Mat_khau": "0456386076"
+    },
+    {
+      "Email": "phambichnga30@stockflow.vn",
+      "Mat_khau": "0805557704"
+    },
+    {
+      "Email": "hodieuanh31@stockflow.vn",
+      "Mat_khau": "0679058830"
+    },
+    {
+      "Email": "buidieungoc32@stockflow.vn",
+      "Mat_khau": "0576196143"
+    },
+    {
+      "Email": "lyanhviet33@stockflow.vn",
+      "Mat_khau": "0475890092"
+    },
+    {
+      "Email": "dothanhbinh34@stockflow.vn",
+      "Mat_khau": "0754021160"
+    },
+    {
+      "Email": "huynhthimai35@stockflow.vn",
+      "Mat_khau": "0483254552"
+    },
+    {
+      "Email": "vothungoc36@stockflow.vn",
+      "Mat_khau": "0831027380"
+    },
+    {
+      "Email": "ngothanhtrinh37@stockflow.vn",
+      "Mat_khau": "0875377032"
+    },
+    {
+      "Email": "tranquocdung38@stockflow.vn",
+      "Mat_khau": "0754383407"
+    },
+    {
+      "Email": "vohonganh39@stockflow.vn",
+      "Mat_khau": "0524606470"
+    },
+    {
+      "Email": "duongbichnhung40@stockflow.vn",
+      "Mat_khau": "0772958185"
+    },
+    {
+      "Email": "phananhan41@stockflow.vn",
+      "Mat_khau": "0951341162"
+    },
+    {
+      "Email": "hoanghonglinh42@stockflow.vn",
+      "Mat_khau": "0509859033"
+    },
+    {
+      "Email": "phanthunga43@stockflow.vn",
+      "Mat_khau": "0680035249"
+    },
+    {
+      "Email": "ngoanhvinh44@stockflow.vn",
+      "Mat_khau": "0469722624"
+    },
+    {
+      "Email": "nguyenducquang45@stockflow.vn",
+      "Mat_khau": "0988381610"
+    },
+    {
+      "Email": "vuxuanminh46@stockflow.vn",
+      "Mat_khau": "0332751084"
+    },
+    {
+      "Email": "buixuankhang47@stockflow.vn",
+      "Mat_khau": "0995991668"
+    },
+    {
+      "Email": "buiducbinh48@stockflow.vn",
+      "Mat_khau": "0588548201"
+    },
+    {
+      "Email": "hoangthitrinh49@stockflow.vn",
+      "Mat_khau": "0727673333"
+    },
+    {
+      "Email": "vothanhlan50@stockflow.vn",
+      "Mat_khau": "0794140383"
+    }
+  ],
+  "san_pham": [
+    {
+      "Ma_san_pham": "SP001",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Iphone 16 pro max",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 20,
+      "Gia_ban": "10071000.00",
+      "Gia_nhap": "8520000.00",
+      "Ma_ncc": "NCC10"
+    },
+    {
+      "Ma_san_pham": "SP002",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "iPhone 14",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 22,
+      "Gia_ban": "16272099.00",
+      "Gia_nhap": "11293000.00",
+      "Ma_ncc": "NCC30"
+    },
+    {
+      "Ma_san_pham": "SP003",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Samsung Galaxy S24 Ultra",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 17,
+      "Gia_ban": "32077511.00",
+      "Gia_nhap": "23940000.00",
+      "Ma_ncc": "NCC04"
+    },
+    {
+      "Ma_san_pham": "SP004",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Samsung Galaxy A55",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 27,
+      "Gia_ban": "34210198.00",
+      "Gia_nhap": "25955000.00",
+      "Ma_ncc": "NCC49"
+    },
+    {
+      "Ma_san_pham": "SP005",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Xiaomi 14",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 13,
+      "Gia_ban": "30923286.00",
+      "Gia_nhap": "26348000.00",
+      "Ma_ncc": "NCC30"
+    },
+    {
+      "Ma_san_pham": "SP006",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Xiaomi Redmi Note 13",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 16,
+      "Gia_ban": "30603122.00",
+      "Gia_nhap": "21894000.00",
+      "Ma_ncc": "NCC34"
+    },
+    {
+      "Ma_san_pham": "SP007",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Oppo Reno 11",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 21,
+      "Gia_ban": "10066617.00",
+      "Gia_nhap": "7221000.00",
+      "Ma_ncc": "NCC19"
+    },
+    {
+      "Ma_san_pham": "SP008",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Oppo A79",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 6,
+      "Gia_ban": "8810368.00",
+      "Gia_nhap": "6639000.00",
+      "Ma_ncc": "NCC05"
+    },
+    {
+      "Ma_san_pham": "SP009",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Vivo V29",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 21,
+      "Gia_ban": "24836074.00",
+      "Gia_nhap": "18825000.00",
+      "Ma_ncc": "NCC25"
+    },
+    {
+      "Ma_san_pham": "SP010",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Realme 12 Pro",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 30,
+      "Gia_ban": "34959935.00",
+      "Gia_nhap": "25150000.00",
+      "Ma_ncc": "NCC30"
+    },
+    {
+      "Ma_san_pham": "SP011",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Nokia G42",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 24,
+      "Gia_ban": "25828718.00",
+      "Gia_nhap": "19683000.00",
+      "Ma_ncc": "NCC10"
+    },
+    {
+      "Ma_san_pham": "SP012",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Google Pixel 8",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 15,
+      "Gia_ban": "9728148.00",
+      "Gia_nhap": "8401000.00",
+      "Ma_ncc": "NCC26"
+    },
+    {
+      "Ma_san_pham": "SP013",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Asus Zenfone 10",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 7,
+      "Gia_ban": "12462191.00",
+      "Gia_nhap": "9510000.00",
+      "Ma_ncc": "NCC17"
+    },
+    {
+      "Ma_san_pham": "SP014",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Dell Inspiron 15",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 5,
+      "Gia_ban": "12409229.00",
+      "Gia_nhap": "9027000.00",
+      "Ma_ncc": "NCC05"
+    },
+    {
+      "Ma_san_pham": "SP015",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Dell XPS 13",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 29,
+      "Gia_ban": "47592635.00",
+      "Gia_nhap": "40132000.00",
+      "Ma_ncc": "NCC22"
+    },
+    {
+      "Ma_san_pham": "SP016",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop HP Pavilion 14",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 27,
+      "Gia_ban": "19925925.00",
+      "Gia_nhap": "16042000.00",
+      "Ma_ncc": "NCC31"
+    },
+    {
+      "Ma_san_pham": "SP017",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop HP Envy x360",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 12,
+      "Gia_ban": "37019853.00",
+      "Gia_nhap": "27119000.00",
+      "Ma_ncc": "NCC30"
+    },
+    {
+      "Ma_san_pham": "SP018",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Lenovo ThinkPad E14",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 27,
+      "Gia_ban": "27805633.00",
+      "Gia_nhap": "21894000.00",
+      "Ma_ncc": "NCC33"
+    },
+    {
+      "Ma_san_pham": "SP019",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Lenovo IdeaPad Slim 5",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 15,
+      "Gia_ban": "38881788.00",
+      "Gia_nhap": "33450000.00",
+      "Ma_ncc": "NCC16"
+    },
+    {
+      "Ma_san_pham": "SP020",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Asus Vivobook 15",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 24,
+      "Gia_ban": "23166703.00",
+      "Gia_nhap": "18077000.00",
+      "Ma_ncc": "NCC50"
+    },
+    {
+      "Ma_san_pham": "SP021",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Asus ROG Strix",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 8,
+      "Gia_ban": "57610029.00",
+      "Gia_nhap": "44559000.00",
+      "Ma_ncc": "NCC25"
+    },
+    {
+      "Ma_san_pham": "SP022",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "MacBook Air M2",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 20,
+      "Gia_ban": "47036962.00",
+      "Gia_nhap": "40728000.00",
+      "Ma_ncc": "NCC14"
+    },
+    {
+      "Ma_san_pham": "SP023",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "MacBook Pro 14",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 17,
+      "Gia_ban": "10771927.00",
+      "Gia_nhap": "8230000.00",
+      "Ma_ncc": "NCC09"
+    },
+    {
+      "Ma_san_pham": "SP024",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop Acer Aspire 7",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 14,
+      "Gia_ban": "30692583.00",
+      "Gia_nhap": "21796000.00",
+      "Ma_ncc": "NCC21"
+    },
+    {
+      "Ma_san_pham": "SP025",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "Laptop MSI Modern 14",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 13,
+      "Gia_ban": "48320506.00",
+      "Gia_nhap": "34292000.00",
+      "Ma_ncc": "NCC38"
+    },
+    {
+      "Ma_san_pham": "SP026",
+      "Ma_danh_muc": "DM02",
+      "Ten_san_pham": "PC mini Intel NUC",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 5,
+      "Gia_ban": "38807502.00",
+      "Gia_nhap": "29164000.00",
+      "Ma_ncc": "NCC34"
+    },
+    {
+      "Ma_san_pham": "SP027",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "iPad Gen 10",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 10,
+      "Gia_ban": "9235729.00",
+      "Gia_nhap": "7003000.00",
+      "Ma_ncc": "NCC14"
+    },
+    {
+      "Ma_san_pham": "SP028",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "iPad Air M1",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 23,
+      "Gia_ban": "7225709.00",
+      "Gia_nhap": "5489000.00",
+      "Ma_ncc": "NCC30"
+    },
+    {
+      "Ma_san_pham": "SP029",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "iPad Pro 11 inch",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 17,
+      "Gia_ban": "9231667.00",
+      "Gia_nhap": "6639000.00",
+      "Ma_ncc": "NCC27"
+    },
+    {
+      "Ma_san_pham": "SP030",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Samsung Galaxy Tab S9",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 17,
+      "Gia_ban": "3901086.00",
+      "Gia_nhap": "3189000.00",
+      "Ma_ncc": "NCC04"
+    },
+    {
+      "Ma_san_pham": "SP031",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Samsung Galaxy Tab A9",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 13,
+      "Gia_ban": "11161414.00",
+      "Gia_nhap": "8537000.00",
+      "Ma_ncc": "NCC24"
+    },
+    {
+      "Ma_san_pham": "SP032",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Xiaomi Pad 6",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 7,
+      "Gia_ban": "13643687.00",
+      "Gia_nhap": "11367000.00",
+      "Ma_ncc": "NCC03"
+    },
+    {
+      "Ma_san_pham": "SP033",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Huawei MatePad 11",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 11,
+      "Gia_ban": "9640560.00",
+      "Gia_nhap": "6790000.00",
+      "Ma_ncc": "NCC36"
+    },
+    {
+      "Ma_san_pham": "SP034",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Lenovo Tab M10",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 26,
+      "Gia_ban": "5234158.00",
+      "Gia_nhap": "4165000.00",
+      "Ma_ncc": "NCC45"
+    },
+    {
+      "Ma_san_pham": "SP035",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Oppo Pad Air",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 19,
+      "Gia_ban": "26636914.00",
+      "Gia_nhap": "19891000.00",
+      "Ma_ncc": "NCC03"
+    },
+    {
+      "Ma_san_pham": "SP036",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Realme Pad 2",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 11,
+      "Gia_ban": "21857222.00",
+      "Gia_nhap": "18776000.00",
+      "Ma_ncc": "NCC06"
+    },
+    {
+      "Ma_san_pham": "SP037",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Microsoft Surface Go",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 10,
+      "Gia_ban": "6348809.00",
+      "Gia_nhap": "5146000.00",
+      "Ma_ncc": "NCC01"
+    },
+    {
+      "Ma_san_pham": "SP038",
+      "Ma_danh_muc": "DM03",
+      "Ten_san_pham": "Teclast Tablet P30",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 14,
+      "Gia_ban": "5718384.00",
+      "Gia_nhap": "4428000.00",
+      "Ma_ncc": "NCC17"
+    },
+    {
+      "Ma_san_pham": "SP039",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Đồng hồ thông minh Apple Watch",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 7,
+      "Gia_ban": "7922527.00",
+      "Gia_nhap": "5790000.00",
+      "Ma_ncc": "NCC11"
+    },
+    {
+      "Ma_san_pham": "SP040",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Đồng hồ thông minh Samsung Galaxy Watch",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 22,
+      "Gia_ban": "6860426.00",
+      "Gia_nhap": "5257000.00",
+      "Ma_ncc": "NCC35"
+    },
+    {
+      "Ma_san_pham": "SP041",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Tai nghe Sony WH-1000XM5",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 12,
+      "Gia_ban": "5733634.00",
+      "Gia_nhap": "4107000.00",
+      "Ma_ncc": "NCC35"
+    },
+    {
+      "Ma_san_pham": "SP042",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Tai nghe AirPods Pro",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 16,
+      "Gia_ban": "2517173.00",
+      "Gia_nhap": "1920000.00",
+      "Ma_ncc": "NCC30"
+    },
+    {
+      "Ma_san_pham": "SP043",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Loa Bluetooth JBL Flip 6",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 7,
+      "Gia_ban": "2358286.00",
+      "Gia_nhap": "2034000.00",
+      "Ma_ncc": "NCC27"
+    },
+    {
+      "Ma_san_pham": "SP044",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Loa Bluetooth Marshall Emberton",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 17,
+      "Gia_ban": "5416866.00",
+      "Gia_nhap": "4603000.00",
+      "Ma_ncc": "NCC44"
+    },
+    {
+      "Ma_san_pham": "SP045",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Sạc dự phòng Anker 20000mAh",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 24,
+      "Gia_ban": "1816625.00",
+      "Gia_nhap": "1512000.00",
+      "Ma_ncc": "NCC11"
+    },
+    {
+      "Ma_san_pham": "SP046",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Cáp sạc USB-C to Lightning",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 22,
+      "Gia_ban": "2190347.00",
+      "Gia_nhap": "1683000.00",
+      "Ma_ncc": "NCC22"
+    },
+    {
+      "Ma_san_pham": "SP047",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Ốp lưng điện thoại chống sốc",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 17,
+      "Gia_ban": "3372795.00",
+      "Gia_nhap": "2334000.00",
+      "Ma_ncc": "NCC42"
+    },
+    {
+      "Ma_san_pham": "SP048",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Chuột không dây Logitech",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 10,
+      "Gia_ban": "4574282.00",
+      "Gia_nhap": "3884000.00",
+      "Ma_ncc": "NCC23"
+    },
+    {
+      "Ma_san_pham": "SP049",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Bàn phím cơ AKKO",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 7,
+      "Gia_ban": "1613272.00",
+      "Gia_nhap": "1117000.00",
+      "Ma_ncc": "NCC37"
+    },
+    {
+      "Ma_san_pham": "SP050",
+      "Ma_danh_muc": "DM04",
+      "Ten_san_pham": "Balo laptop Targus",
+      "Mo_ta": "Hàng chính hãng, bảo hành 12 tháng",
+      "Nguong_ton_toi_thieu": 21,
+      "Gia_ban": "2852326.00",
+      "Gia_nhap": "2042000.00",
+      "Ma_ncc": "NCC31"
+    },
+    {
+      "Ma_san_pham": "SP051",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Oppo Find X 10",
+      "Mo_ta": "Hàng mới nhập kho",
+      "Nguong_ton_toi_thieu": 20,
+      "Gia_ban": "12000000.00",
+      "Gia_nhap": "10000000.00",
+      "Ma_ncc": "NCC01"
+    }
+  ],
+  "luu_tru": [
+    {
+      "Ma_kho": "K01",
+      "Ma_san_pham": "SP051",
+      "Vi_tri": "Kệ A1-01",
+      "So_luong_ton": 10
+    },
+    {
+      "Ma_kho": "K02",
+      "Ma_san_pham": "SP022",
+      "Vi_tri": "B8-19",
+      "So_luong_ton": 49
+    },
+    {
+      "Ma_kho": "K02",
+      "Ma_san_pham": "SP029",
+      "Vi_tri": "E5-05",
+      "So_luong_ton": 195
+    },
+    {
+      "Ma_kho": "K05",
+      "Ma_san_pham": "SP029",
+      "Vi_tri": "D1-15",
+      "So_luong_ton": 243
+    },
+    {
+      "Ma_kho": "K06",
+      "Ma_san_pham": "SP007",
+      "Vi_tri": "A4-13",
+      "So_luong_ton": 63
+    },
+    {
+      "Ma_kho": "K06",
+      "Ma_san_pham": "SP048",
+      "Vi_tri": "E1-09",
+      "So_luong_ton": 121
+    },
+    {
+      "Ma_kho": "K07",
+      "Ma_san_pham": "SP015",
+      "Vi_tri": "C8-03",
+      "So_luong_ton": 197
+    },
+    {
+      "Ma_kho": "K07",
+      "Ma_san_pham": "SP045",
+      "Vi_tri": "B6-03",
+      "So_luong_ton": 210
+    },
+    {
+      "Ma_kho": "K08",
+      "Ma_san_pham": "SP009",
+      "Vi_tri": "A7-03",
+      "So_luong_ton": 254
+    },
+    {
+      "Ma_kho": "K08",
+      "Ma_san_pham": "SP025",
+      "Vi_tri": "B5-20",
+      "So_luong_ton": 295
+    },
+    {
+      "Ma_kho": "K10",
+      "Ma_san_pham": "SP029",
+      "Vi_tri": "D2-18",
+      "So_luong_ton": 216
+    },
+    {
+      "Ma_kho": "K10",
+      "Ma_san_pham": "SP039",
+      "Vi_tri": "E5-09",
+      "So_luong_ton": 222
+    },
+    {
+      "Ma_kho": "K11",
+      "Ma_san_pham": "SP007",
+      "Vi_tri": "E9-01",
+      "So_luong_ton": 104
+    },
+    {
+      "Ma_kho": "K12",
+      "Ma_san_pham": "SP033",
+      "Vi_tri": "C1-20",
+      "So_luong_ton": 100
+    },
+    {
+      "Ma_kho": "K12",
+      "Ma_san_pham": "SP034",
+      "Vi_tri": "D5-02",
+      "So_luong_ton": 284
+    },
+    {
+      "Ma_kho": "K14",
+      "Ma_san_pham": "SP012",
+      "Vi_tri": "D7-16",
+      "So_luong_ton": 80
+    },
+    {
+      "Ma_kho": "K14",
+      "Ma_san_pham": "SP040",
+      "Vi_tri": "E5-18",
+      "So_luong_ton": 275
+    },
+    {
+      "Ma_kho": "K14",
+      "Ma_san_pham": "SP045",
+      "Vi_tri": "C7-08",
+      "So_luong_ton": 166
+    },
+    {
+      "Ma_kho": "K15",
+      "Ma_san_pham": "SP025",
+      "Vi_tri": "B6-18",
+      "So_luong_ton": 202
+    },
+    {
+      "Ma_kho": "K16",
+      "Ma_san_pham": "SP021",
+      "Vi_tri": "C1-04",
+      "So_luong_ton": 33
+    },
+    {
+      "Ma_kho": "K16",
+      "Ma_san_pham": "SP028",
+      "Vi_tri": "A6-06",
+      "So_luong_ton": 5
+    },
+    {
+      "Ma_kho": "K16",
+      "Ma_san_pham": "SP043",
+      "Vi_tri": "D3-20",
+      "So_luong_ton": 257
+    },
+    {
+      "Ma_kho": "K18",
+      "Ma_san_pham": "SP029",
+      "Vi_tri": "D5-09",
+      "So_luong_ton": 228
+    },
+    {
+      "Ma_kho": "K20",
+      "Ma_san_pham": "SP011",
+      "Vi_tri": "D3-15",
+      "So_luong_ton": 192
+    },
+    {
+      "Ma_kho": "K22",
+      "Ma_san_pham": "SP036",
+      "Vi_tri": "C7-08",
+      "So_luong_ton": 273
+    },
+    {
+      "Ma_kho": "K23",
+      "Ma_san_pham": "SP048",
+      "Vi_tri": "A1-14",
+      "So_luong_ton": 92
+    },
+    {
+      "Ma_kho": "K25",
+      "Ma_san_pham": "SP045",
+      "Vi_tri": "C6-15",
+      "So_luong_ton": 124
+    },
+    {
+      "Ma_kho": "K28",
+      "Ma_san_pham": "SP033",
+      "Vi_tri": "B6-01",
+      "So_luong_ton": 279
+    },
+    {
+      "Ma_kho": "K28",
+      "Ma_san_pham": "SP041",
+      "Vi_tri": "A5-18",
+      "So_luong_ton": 268
+    },
+    {
+      "Ma_kho": "K30",
+      "Ma_san_pham": "SP039",
+      "Vi_tri": "C9-04",
+      "So_luong_ton": 213
+    },
+    {
+      "Ma_kho": "K33",
+      "Ma_san_pham": "SP019",
+      "Vi_tri": "E9-12",
+      "So_luong_ton": 179
+    },
+    {
+      "Ma_kho": "K34",
+      "Ma_san_pham": "SP020",
+      "Vi_tri": "C5-04",
+      "So_luong_ton": 126
+    },
+    {
+      "Ma_kho": "K34",
+      "Ma_san_pham": "SP028",
+      "Vi_tri": "D6-08",
+      "So_luong_ton": 286
+    },
+    {
+      "Ma_kho": "K38",
+      "Ma_san_pham": "SP025",
+      "Vi_tri": "C1-04",
+      "So_luong_ton": 120
+    },
+    {
+      "Ma_kho": "K39",
+      "Ma_san_pham": "SP012",
+      "Vi_tri": "A2-12",
+      "So_luong_ton": 121
+    },
+    {
+      "Ma_kho": "K40",
+      "Ma_san_pham": "SP017",
+      "Vi_tri": "E8-10",
+      "So_luong_ton": 211
+    },
+    {
+      "Ma_kho": "K40",
+      "Ma_san_pham": "SP034",
+      "Vi_tri": "C3-14",
+      "So_luong_ton": 129
+    },
+    {
+      "Ma_kho": "K40",
+      "Ma_san_pham": "SP038",
+      "Vi_tri": "C4-20",
+      "So_luong_ton": 268
+    },
+    {
+      "Ma_kho": "K41",
+      "Ma_san_pham": "SP006",
+      "Vi_tri": "E5-11",
+      "So_luong_ton": 218
+    },
+    {
+      "Ma_kho": "K41",
+      "Ma_san_pham": "SP027",
+      "Vi_tri": "E6-17",
+      "So_luong_ton": 182
+    },
+    {
+      "Ma_kho": "K41",
+      "Ma_san_pham": "SP032",
+      "Vi_tri": "A5-02",
+      "So_luong_ton": 263
+    },
+    {
+      "Ma_kho": "K41",
+      "Ma_san_pham": "SP041",
+      "Vi_tri": "A8-19",
+      "So_luong_ton": 62
+    },
+    {
+      "Ma_kho": "K42",
+      "Ma_san_pham": "SP007",
+      "Vi_tri": "B9-16",
+      "So_luong_ton": 174
+    },
+    {
+      "Ma_kho": "K43",
+      "Ma_san_pham": "SP031",
+      "Vi_tri": "A2-05",
+      "So_luong_ton": 2
+    },
+    {
+      "Ma_kho": "K44",
+      "Ma_san_pham": "SP037",
+      "Vi_tri": "B5-18",
+      "So_luong_ton": 5
+    },
+    {
+      "Ma_kho": "K45",
+      "Ma_san_pham": "SP010",
+      "Vi_tri": "C3-16",
+      "So_luong_ton": 281
+    },
+    {
+      "Ma_kho": "K48",
+      "Ma_san_pham": "SP017",
+      "Vi_tri": "B8-06",
+      "So_luong_ton": 183
+    },
+    {
+      "Ma_kho": "K48",
+      "Ma_san_pham": "SP040",
+      "Vi_tri": "D8-10",
+      "So_luong_ton": 160
+    },
+    {
+      "Ma_kho": "K49",
+      "Ma_san_pham": "SP009",
+      "Vi_tri": "A1-15",
+      "So_luong_ton": 216
+    },
+    {
+      "Ma_kho": "K49",
+      "Ma_san_pham": "SP022",
+      "Vi_tri": "B8-14",
+      "So_luong_ton": 50
+    },
+    {
+      "Ma_kho": "K49",
+      "Ma_san_pham": "SP025",
+      "Vi_tri": "E4-01",
+      "So_luong_ton": 215
+    }
+  ],
+  "phieu": [
+    {
+      "Ma_phieu": "PN001",
+      "Ngay_nhap": "2025-12-31T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV039",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN002",
+      "Ngay_nhap": "2026-06-21T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV047",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN003",
+      "Ngay_nhap": "2026-03-03T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV026",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN004",
+      "Ngay_nhap": "2026-08-05T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV030",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN005",
+      "Ngay_nhap": "2026-07-11T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV024",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN006",
+      "Ngay_nhap": "2026-08-08T17:00:00.000Z",
+      "Trang_thai": "Chờ duyệt",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV038",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN007",
+      "Ngay_nhap": "2026-06-15T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV025",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN008",
+      "Ngay_nhap": "2026-07-02T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV049",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN009",
+      "Ngay_nhap": "2026-07-01T17:00:00.000Z",
+      "Trang_thai": "Chờ duyệt",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV048",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN010",
+      "Ngay_nhap": "2026-06-28T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV031",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN011",
+      "Ngay_nhap": "2026-01-05T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV027",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN012",
+      "Ngay_nhap": "2026-08-26T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV039",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN013",
+      "Ngay_nhap": "2026-01-11T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV035",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN014",
+      "Ngay_nhap": "2026-01-27T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV050",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN015",
+      "Ngay_nhap": "2026-06-18T17:00:00.000Z",
+      "Trang_thai": "Chờ duyệt",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV017",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN016",
+      "Ngay_nhap": "2026-07-15T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV046",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN017",
+      "Ngay_nhap": "2026-05-11T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV014",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN018",
+      "Ngay_nhap": "2026-04-21T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV005",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN019",
+      "Ngay_nhap": "2026-04-27T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV004",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN020",
+      "Ngay_nhap": "2026-07-06T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV035",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN021",
+      "Ngay_nhap": "2026-08-21T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV044",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN022",
+      "Ngay_nhap": "2026-09-21T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV004",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN023",
+      "Ngay_nhap": "2026-05-28T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV007",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN024",
+      "Ngay_nhap": "2026-08-02T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV008",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PN025",
+      "Ngay_nhap": "2026-02-03T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Nhập hàng định kỳ",
+      "Ma_nhan_vien": "NV005",
+      "loai": "nhap"
+    },
+    {
+      "Ma_phieu": "PX001",
+      "Ngay_nhap": "2026-07-17T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV009",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX002",
+      "Ngay_nhap": "2026-08-13T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV048",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX003",
+      "Ngay_nhap": "2026-01-12T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV027",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX004",
+      "Ngay_nhap": "2026-07-08T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV044",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX005",
+      "Ngay_nhap": "2026-08-13T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV004",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX006",
+      "Ngay_nhap": "2026-07-31T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV010",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX007",
+      "Ngay_nhap": "2026-05-16T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV011",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX008",
+      "Ngay_nhap": "2026-07-22T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV005",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX009",
+      "Ngay_nhap": "2026-08-20T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV027",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX010",
+      "Ngay_nhap": "2026-09-01T17:00:00.000Z",
+      "Trang_thai": "Chờ duyệt",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV041",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX011",
+      "Ngay_nhap": "2026-03-16T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV019",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX012",
+      "Ngay_nhap": "2026-02-17T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV028",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX013",
+      "Ngay_nhap": "2026-04-08T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV048",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX014",
+      "Ngay_nhap": "2026-08-24T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV040",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX015",
+      "Ngay_nhap": "2026-03-18T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV021",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX016",
+      "Ngay_nhap": "2026-03-22T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV002",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX017",
+      "Ngay_nhap": "2026-02-21T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV030",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX018",
+      "Ngay_nhap": "2026-07-16T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV024",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX019",
+      "Ngay_nhap": "2026-07-19T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV001",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX020",
+      "Ngay_nhap": "2026-07-06T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV043",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX021",
+      "Ngay_nhap": "2026-02-16T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV036",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX022",
+      "Ngay_nhap": "2026-04-22T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV022",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX023",
+      "Ngay_nhap": "2026-05-11T17:00:00.000Z",
+      "Trang_thai": "Hoàn thành",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV020",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX024",
+      "Ngay_nhap": "2026-02-25T17:00:00.000Z",
+      "Trang_thai": "Đã hủy",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV005",
+      "loai": "xuat"
+    },
+    {
+      "Ma_phieu": "PX025",
+      "Ngay_nhap": "2026-04-25T17:00:00.000Z",
+      "Trang_thai": "Chờ duyệt",
+      "Ghi_chu": "Xuất hàng theo yêu cầu",
+      "Ma_nhan_vien": "NV036",
+      "loai": "xuat"
+    }
+  ],
+  "co_trong": [
+    {
+      "Ma_phieu": "PN001",
+      "Ma_san_pham": "SP005",
+      "So_luong": 8
+    },
+    {
+      "Ma_phieu": "PN001",
+      "Ma_san_pham": "SP048",
+      "So_luong": 72
+    },
+    {
+      "Ma_phieu": "PN002",
+      "Ma_san_pham": "SP016",
+      "So_luong": 66
+    },
+    {
+      "Ma_phieu": "PN002",
+      "Ma_san_pham": "SP038",
+      "So_luong": 14
+    },
+    {
+      "Ma_phieu": "PN002",
+      "Ma_san_pham": "SP046",
+      "So_luong": 6
+    },
+    {
+      "Ma_phieu": "PN003",
+      "Ma_san_pham": "SP018",
+      "So_luong": 93
+    },
+    {
+      "Ma_phieu": "PN003",
+      "Ma_san_pham": "SP020",
+      "So_luong": 68
+    },
+    {
+      "Ma_phieu": "PN006",
+      "Ma_san_pham": "SP001",
+      "So_luong": 24
+    },
+    {
+      "Ma_phieu": "PN007",
+      "Ma_san_pham": "SP020",
+      "So_luong": 52
+    },
+    {
+      "Ma_phieu": "PN008",
+      "Ma_san_pham": "SP046",
+      "So_luong": 8
+    },
+    {
+      "Ma_phieu": "PN009",
+      "Ma_san_pham": "SP002",
+      "So_luong": 3
+    },
+    {
+      "Ma_phieu": "PN010",
+      "Ma_san_pham": "SP032",
+      "So_luong": 26
+    },
+    {
+      "Ma_phieu": "PN012",
+      "Ma_san_pham": "SP026",
+      "So_luong": 12
+    },
+    {
+      "Ma_phieu": "PN013",
+      "Ma_san_pham": "SP049",
+      "So_luong": 77
+    },
+    {
+      "Ma_phieu": "PN014",
+      "Ma_san_pham": "SP001",
+      "So_luong": 1
+    },
+    {
+      "Ma_phieu": "PN015",
+      "Ma_san_pham": "SP003",
+      "So_luong": 48
+    },
+    {
+      "Ma_phieu": "PN015",
+      "Ma_san_pham": "SP017",
+      "So_luong": 79
+    },
+    {
+      "Ma_phieu": "PN016",
+      "Ma_san_pham": "SP003",
+      "So_luong": 7
+    },
+    {
+      "Ma_phieu": "PN016",
+      "Ma_san_pham": "SP023",
+      "So_luong": 11
+    },
+    {
+      "Ma_phieu": "PN018",
+      "Ma_san_pham": "SP026",
+      "So_luong": 2
+    },
+    {
+      "Ma_phieu": "PN019",
+      "Ma_san_pham": "SP045",
+      "So_luong": 12
+    },
+    {
+      "Ma_phieu": "PN020",
+      "Ma_san_pham": "SP001",
+      "So_luong": 81
+    },
+    {
+      "Ma_phieu": "PN020",
+      "Ma_san_pham": "SP011",
+      "So_luong": 50
+    },
+    {
+      "Ma_phieu": "PN021",
+      "Ma_san_pham": "SP037",
+      "So_luong": 41
+    },
+    {
+      "Ma_phieu": "PN025",
+      "Ma_san_pham": "SP034",
+      "So_luong": 66
+    },
+    {
+      "Ma_phieu": "PX002",
+      "Ma_san_pham": "SP006",
+      "So_luong": 16
+    },
+    {
+      "Ma_phieu": "PX003",
+      "Ma_san_pham": "SP048",
+      "So_luong": 41
+    },
+    {
+      "Ma_phieu": "PX004",
+      "Ma_san_pham": "SP003",
+      "So_luong": 26
+    },
+    {
+      "Ma_phieu": "PX004",
+      "Ma_san_pham": "SP006",
+      "So_luong": 56
+    },
+    {
+      "Ma_phieu": "PX004",
+      "Ma_san_pham": "SP050",
+      "So_luong": 7
+    },
+    {
+      "Ma_phieu": "PX006",
+      "Ma_san_pham": "SP018",
+      "So_luong": 59
+    },
+    {
+      "Ma_phieu": "PX007",
+      "Ma_san_pham": "SP004",
+      "So_luong": 99
+    },
+    {
+      "Ma_phieu": "PX008",
+      "Ma_san_pham": "SP031",
+      "So_luong": 58
+    },
+    {
+      "Ma_phieu": "PX009",
+      "Ma_san_pham": "SP009",
+      "So_luong": 32
+    },
+    {
+      "Ma_phieu": "PX009",
+      "Ma_san_pham": "SP049",
+      "So_luong": 92
+    },
+    {
+      "Ma_phieu": "PX011",
+      "Ma_san_pham": "SP009",
+      "So_luong": 35
+    },
+    {
+      "Ma_phieu": "PX012",
+      "Ma_san_pham": "SP018",
+      "So_luong": 100
+    },
+    {
+      "Ma_phieu": "PX015",
+      "Ma_san_pham": "SP024",
+      "So_luong": 52
+    },
+    {
+      "Ma_phieu": "PX016",
+      "Ma_san_pham": "SP003",
+      "So_luong": 36
+    },
+    {
+      "Ma_phieu": "PX016",
+      "Ma_san_pham": "SP021",
+      "So_luong": 82
+    },
+    {
+      "Ma_phieu": "PX019",
+      "Ma_san_pham": "SP018",
+      "So_luong": 2
+    },
+    {
+      "Ma_phieu": "PX019",
+      "Ma_san_pham": "SP019",
+      "So_luong": 22
+    },
+    {
+      "Ma_phieu": "PX020",
+      "Ma_san_pham": "SP005",
+      "So_luong": 98
+    },
+    {
+      "Ma_phieu": "PX020",
+      "Ma_san_pham": "SP034",
+      "So_luong": 89
+    },
+    {
+      "Ma_phieu": "PX020",
+      "Ma_san_pham": "SP044",
+      "So_luong": 36
+    },
+    {
+      "Ma_phieu": "PX021",
+      "Ma_san_pham": "SP026",
+      "So_luong": 10
+    },
+    {
+      "Ma_phieu": "PX023",
+      "Ma_san_pham": "SP005",
+      "So_luong": 99
+    },
+    {
+      "Ma_phieu": "PX024",
+      "Ma_san_pham": "SP036",
+      "So_luong": 89
+    },
+    {
+      "Ma_phieu": "PX025",
+      "Ma_san_pham": "SP007",
+      "So_luong": 54
+    },
+    {
+      "Ma_phieu": "PX025",
+      "Ma_san_pham": "SP030",
+      "So_luong": 44
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": "log_1791765970747_o1nd",
+      "thoiGian": "07:46:10 12/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐỒNG BỘ CSDL MYSQL",
+      "doiTuong": "Cơ sở dữ liệu MySQL",
+      "chiTiet": "Đã kéo dữ liệu mới nhất từ MySQL: 51 sản phẩm, 50 kho, 50 nhân viên"
+    },
+    {
+      "id": "log_1791765889014_32yw",
+      "thoiGian": "07:44:49 12/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "THÊM MỚI SẢN PHẨM",
+      "doiTuong": "Oppo Find X 10",
+      "chiTiet": "Thêm mã hàng SP051: Oppo Find X 10 vào cơ sở dữ liệu"
+    },
+    {
+      "id": "log_1791765855222_2cpp",
+      "thoiGian": "07:44:15 12/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "XÓA SẢN PHẨM",
+      "doiTuong": "Samsung Galaxy A56 512",
+      "chiTiet": "Xóa mã hàng SKU-S26-512 khỏi cơ sở dữ liệu"
+    },
+    {
+      "id": "log_1791765818615_lo6s",
+      "thoiGian": "07:43:38 12/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Quản lý",
+      "hanhDong": "CẬP NHẬT HÀNG HÓA",
+      "doiTuong": "Iphone 16 pro max",
+      "chiTiet": "Cập nhật thông tin mã hàng SP001"
+    },
+    {
+      "id": "log_1791765748855_5hoa",
+      "thoiGian": "07:42:28 12/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "THÊM MỚI SẢN PHẨM",
+      "doiTuong": "Samsung Galaxy A56 512",
+      "chiTiet": "Thêm mã hàng SKU-S26-512: Samsung Galaxy A56 512 vào cơ sở dữ liệu"
+    },
+    {
+      "id": "log_1791765700589_bivw",
+      "thoiGian": "07:41:40 12/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Ngô Thị Hương (NV001 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791714912465_tkia",
+      "thoiGian": "17:35:12 11/10/2026",
+      "nguoiThaoTac": "Đỗ Anh Khang",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Đỗ Anh Khang (NV002 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791714299162_pwr9",
+      "thoiGian": "17:24:59 11/10/2026",
+      "nguoiThaoTac": "Đặng Văn Phong",
+      "vaiTro": "Quản lý kho",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Đặng Văn Phong (NV004 - Quản lý kho) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791714253790_pv92",
+      "thoiGian": "17:24:13 11/10/2026",
+      "nguoiThaoTac": "Đỗ Thành Bình",
+      "vaiTro": "Kế toán",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Đỗ Thành Bình (NV034 - Kế toán) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791714237997_4ppk",
+      "thoiGian": "17:23:57 11/10/2026",
+      "nguoiThaoTac": "Hồ Quốc An",
+      "vaiTro": "Thủ Kho",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Hồ Quốc An (NV009 - Thủ Kho) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791713358878_lcb0",
+      "thoiGian": "17:09:18 11/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Ngô Thị Hương (NV001 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791711304588_t5lf",
+      "thoiGian": "16:35:04 11/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Quản lý",
+      "hanhDong": "CẬP NHẬT HÀNG HÓA",
+      "doiTuong": "Iphone 17 pro max",
+      "chiTiet": "Cập nhật thông tin mã hàng SP001"
+    },
+    {
+      "id": "log_1791711284774_a32n",
+      "thoiGian": "16:34:44 11/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐỒNG BỘ CSDL MYSQL",
+      "doiTuong": "Cơ sở dữ liệu MySQL",
+      "chiTiet": "Đã kéo dữ liệu mới nhất từ MySQL: 50 sản phẩm, 50 kho, 50 nhân viên"
+    },
+    {
+      "id": "log_1791711209704_ffag",
+      "thoiGian": "16:33:29 11/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Ngô Thị Hương (NV001 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791394695930_xqcw",
+      "thoiGian": "17:38:15 07/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐỒNG BỘ CSDL MYSQL",
+      "doiTuong": "Cơ sở dữ liệu MySQL",
+      "chiTiet": "Đã kéo dữ liệu mới nhất từ MySQL: 50 sản phẩm, 50 kho, 50 nhân viên"
+    },
+    {
+      "id": "log_1791394685730_tb6y",
+      "thoiGian": "17:38:05 07/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐỒNG BỘ CSDL MYSQL",
+      "doiTuong": "Cơ sở dữ liệu MySQL",
+      "chiTiet": "Đã kéo dữ liệu mới nhất từ MySQL: 50 sản phẩm, 50 kho, 50 nhân viên"
+    },
+    {
+      "id": "log_1791394676774_89hz",
+      "thoiGian": "17:37:56 07/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "XÓA SẢN PHẨM",
+      "doiTuong": "Sản phẩm Đã Đổi Tên Thành Công",
+      "chiTiet": "Xóa mã hàng SP999 khỏi cơ sở dữ liệu"
+    },
+    {
+      "id": "log_1791394667570_jr8g",
+      "thoiGian": "17:37:47 07/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Quản lý",
+      "hanhDong": "CẬP NHẬT HÀNG HÓA",
+      "doiTuong": "Sản phẩm Đã Đổi Tên Thành Công",
+      "chiTiet": "Cập nhật thông tin mã hàng SP999"
+    },
+    {
+      "id": "log_1791394659193_2y17",
+      "thoiGian": "17:37:39 07/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "THÊM MỚI SẢN PHẨM",
+      "doiTuong": "Sản phẩm Thử Nghiệm Đồng Bộ MySQL",
+      "chiTiet": "Thêm mã hàng SP999: Sản phẩm Thử Nghiệm Đồng Bộ MySQL vào cơ sở dữ liệu"
+    },
+    {
+      "id": "log_1791390297686_uym2",
+      "thoiGian": "16:24:57 07/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Ngô Thị Hương (NV001 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791390297679_4lj3",
+      "thoiGian": "16:24:57 07/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐỒNG BỘ TỪ FILE SQL",
+      "doiTuong": "qlykho_new.sql",
+      "chiTiet": "Đã nạp và đồng bộ lại 50 sản phẩm, 50 kho từ qlykho_new.sql"
+    },
+    {
+      "id": "log_1791389766647_vybe",
+      "thoiGian": "16:16:06 07/10/2026",
+      "nguoiThaoTac": "Đỗ Anh Khang",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Đỗ Anh Khang (NV002 - Admin) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1791389461635_ejrb",
+      "thoiGian": "16:11:01 07/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Admin",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Ngô Thị Hương (NV001 - Admin) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_01",
+      "thoiGian": "08:30:00 07/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Admin",
+      "hanhDong": "KẾT NỐI HỆ THỐNG",
+      "doiTuong": "Cơ sở dữ liệu qlykho",
+      "chiTiet": "Hệ thống Backend & Database MySQL đã kết nối thành công với 50 sản phẩm, 50 kho, 50 nhà cung cấp và 51 nhân viên"
+    }
+  ]
+}
