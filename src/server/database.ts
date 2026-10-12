@@ -147,17 +147,21 @@ class QLyKhoDatabase {
 
     try {
       const mysql = await import('mysql2/promise');
-      this.mySqlPool = mysql.createPool({
-        host,
-        user,
-        password,
-        database,
-        port,
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0,
-        charset: 'utf8mb4'
-      });
+        this.mySqlPool = mysql.createPool({
+          host,
+          user,
+          password,
+          database,
+          port,
+          waitForConnections: true,
+          connectionLimit: 10,
+          queueLimit: 0,
+          charset: 'utf8mb4',
+          ssl: {
+            ca: process.env.DB_SSL_CA?.replace(/\\n/g, '\n'),
+            rejectUnauthorized: true
+          }
+        });
 
       // Test connection
       const conn = await this.mySqlPool.getConnection();
@@ -199,17 +203,21 @@ class QLyKhoDatabase {
       if (this.mySqlPool) {
         await this.mySqlPool.end().catch(() => {});
       }
-      this.mySqlPool = mysql.createPool({
-        host,
-        user,
-        password,
-        database,
-        port,
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0,
-        charset: 'utf8mb4'
-      });
+        this.mySqlPool = mysql.createPool({
+          host,
+          user,
+          password,
+          database,
+          port,
+          waitForConnections: true,
+          connectionLimit: 10,
+          queueLimit: 0,
+          charset: 'utf8mb4',
+          ssl: {
+            ca: process.env.DB_SSL_CA?.replace(/\\n/g, '\n'),
+            rejectUnauthorized: true
+          }
+        });
 
       const conn = await this.mySqlPool.getConnection();
       console.log(`[MySQL] Kết nối thành công đến MySQL: ${host}:${port}/${database}`);
