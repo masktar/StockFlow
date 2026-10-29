@@ -237,27 +237,38 @@ app.post('/api/audit-logs', (req, res) => {
   }
 });
 
-// Setup Vite middleware in dev or static serving in prod
-async function startServer() {
-  if (!isProduction) {
-    const { createServer: createViteServer } = await import('vite');
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: 'spa'
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.resolve(__dirname, 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(distPath, 'index.html'));
+// Export Express app cho Vercel
+export default app;
+
+// Chỉ chạy server local khi không ở Vercel
+if (!process.env.VERCEL) {
+  async function startServer() {
+    if (!isProduction) {
+      const { createServer: createViteServer } =
+        await import('vite');
+
+      const vite = await createViteServer({
+        server: { middlewareMode: true },
+        appType: 'spa'
+      });
+
+      app.use(vite.middlewares);
+    } else {
+      const distPath = path.resolve(__dirname, 'dist');
+
+      app.use(express.static(distPath));
+
+      app.get('*', (req, res) => {
+        res.sendFile(
+          path.resolve(distPath, 'index.html')
+        );
+      });
+    }
+
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running on port ${PORT}`);
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[StockFlow Full-Stack Server] Đang chạy tại http://0.0.0.0:${PORT}`);
-    console.log(`[Database] Đã nạp thành công dữ liệu CSDL qlykho: 50 sản phẩm, 50 kho, 50 NCC, 51 nhân viên`);
-  });
+  startServer();
 }
-
-startServer();

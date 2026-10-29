@@ -1885,6 +1885,16 @@
       "Gia_ban": "12000000.00",
       "Gia_nhap": "10000000.00",
       "Ma_ncc": "NCC01"
+    },
+    {
+      "Ma_san_pham": "SP052",
+      "Ma_danh_muc": "DM01",
+      "Ten_san_pham": "Laptop Acer Nitro",
+      "Mo_ta": "Hàng mới nhập kho",
+      "Nguong_ton_toi_thieu": 10,
+      "Gia_ban": 20000000,
+      "Gia_nhap": 15000000,
+      "Ma_ncc": "NCC01"
     }
   ],
   "luu_tru": [
@@ -2193,6 +2203,12 @@
       "Ma_san_pham": "SP025",
       "Vi_tri": "E4-01",
       "So_luong_ton": 215
+    },
+    {
+      "Ma_kho": "K01",
+      "Ma_san_pham": "SP052",
+      "Vi_tri": "Kệ A1-01",
+      "So_luong_ton": 10
     }
   ],
   "phieu": [
@@ -2850,6 +2866,42 @@
     }
   ],
   "audit_logs": [
+    {
+      "id": "log_1793287746489_9ih0",
+      "thoiGian": "22:29:06 29/10/2026",
+      "nguoiThaoTac": "Đỗ Anh Khang",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Đỗ Anh Khang (NV002 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
+    {
+      "id": "log_1793286518597_hy80",
+      "thoiGian": "22:08:38 29/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Quản lý",
+      "hanhDong": "CẬP NHẬT HÀNG HÓA",
+      "doiTuong": "Laptop Acer Nitro",
+      "chiTiet": "Cập nhật thông tin mã hàng SP052"
+    },
+    {
+      "id": "log_1793286502022_jbhw",
+      "thoiGian": "22:08:22 29/10/2026",
+      "nguoiThaoTac": "Hệ thống",
+      "vaiTro": "Admin",
+      "hanhDong": "THÊM MỚI SẢN PHẨM",
+      "doiTuong": "Laptop Acer Nitro",
+      "chiTiet": "Thêm mã hàng SP052: Laptop Acer Nitro vào cơ sở dữ liệu"
+    },
+    {
+      "id": "log_1793286326766_cvbt",
+      "thoiGian": "22:05:26 29/10/2026",
+      "nguoiThaoTac": "Ngô Thị Hương",
+      "vaiTro": "Quản trị viên (Admin)",
+      "hanhDong": "ĐĂNG NHẬP",
+      "doiTuong": "Hệ thống StockFlow",
+      "chiTiet": "Người dùng Ngô Thị Hương (NV001 - Quản trị viên (Admin)) đã đăng nhập thành công"
+    },
     {
       "id": "log_1791765970747_o1nd",
       "thoiGian": "07:46:10 12/10/2026",
